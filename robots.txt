@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://on-fin.ru/sitemap.xml
