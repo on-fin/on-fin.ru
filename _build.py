@@ -147,15 +147,18 @@ def main():
     pages.append(('poleznoe/instrukciya.html',) + instruction_page())
 
     urls = []
+    ignore = os.path.join(ROOT, '.gitignore')
+    drafts = set(l.strip() for l in read(ignore).splitlines()) if os.path.exists(ignore) else set()
     for rel, meta, body in pages:
-        url = '/' + (rel[:-len('index.html')] if rel.endswith('index.html') else rel)
+        url = '/' +(rel[:-len('index.html')] if rel.endswith('index.html') else rel)
         page = (layout.replace('{{content}}', body)
                 .replace('{{title}}', html.escape(meta.get('title', 'ФинУчет')))
                 .replace('{{description}}', html.escape(meta.get('description', '')))
                 .replace('{{url}}', url)
                 .replace('{{cssv}}', CSS_VERSION))
         write(os.path.join(ROOT, rel), page)
-        if rel != '404.html':
+        # Черновики, которые не публикуются (перечислены в .gitignore), в карту сайта не попадают
+        if rel != '404.html' and rel not in drafts:
             urls.append(url)
         print('  ' + rel)
 
