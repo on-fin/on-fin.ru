@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Даты начисления из текста платежа – База знаний Финдикатора</title>
+<meta name="description" content="«За июль», «за 2 квартал» – расход попадёт в ОПУ своего месяца">
+<link rel="stylesheet" href="/help/help.css?v=9">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/raznoska/daty-iz-teksta.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/raznoska/daty-iz-teksta.html">
+<meta property="og:title" content="Даты начисления из текста платежа – База знаний Финдикатора">
+<meta property="og:description" content="«За июль», «за 2 квартал» – расход попадёт в ОПУ своего месяца">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">🏷️ Разноска по статьям</div><a href="/help/raznoska/bez-stati.html" class="">Разноска операций без статьи</a><a href="/help/raznoska/pravila.html" class="">Правила разноски</a><a href="/help/raznoska/kak-pisat-pravila.html" class="">Как писать правила: слова, &amp; и !</a><a href="/help/raznoska/proverka-pravil.html" class="">Порядок и проверка правил</a><a href="/help/raznoska/daty-iz-teksta.html" class="">Даты начисления из текста платежа</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/raznoska/">Разноска по статьям</a><i>›</i><span>Даты начисления из текста платежа</span></nav><h1>Даты начисления из текста платежа</h1><p class="art-lead">«За июль», «за 2 квартал» – расход попадёт в ОПУ своего месяца</p><div class="art-info"><span>👤 Бухгалтеру, финансисту</span><span>⏱ 3 минуты</span></div><div class="art-body"><p>У каждой операции две даты: <b>дата оплаты</b> (когда ушли деньги – для ОДДС) и <b>дата начисления</b> (к какому месяцу относится доход или расход – для ОПУ). Зачем это нужно, читайте в статье <a href="/help/operacii/data-nachisleniya.html">Дата начисления</a>.</p>
+<p>Финдикатор умеет брать дату начисления из основания платежа.</p>
+<h2 id="что-понимает-система">Что понимает система</h2>
+<div class="table-scroll"><table class="htable"><tr><th>В основании платежа</th><th>Дата начисления</th></tr><tr><td>«Аренда <b>за июль</b> 2026»</td><td>31.07.2026</td></tr><tr><td>«Налог <b>за 2 квартал</b>»</td><td>30.06</td></tr><tr><td>«Услуги <b>с 01.05 по 31.07</b>»</td><td>31.07</td></tr><tr><td>Периода в тексте нет</td><td>Дата оплаты</td></tr></table></div>
+<p>Ставится <b>последний день периода</b>.</p>
+<h2 id="как-запустить">Как запустить</h2>
+<p>Обычно ничего делать не нужно: даты начисления определяются при загрузке. Чтобы пройтись по уже загруженным операциям заново:</p>
+<p><b>Разноска → Команды → Даты начисления из текста → Выполнить.</b></p>
+<figure class="shot"><div class="shot-in"><img src="/help/img/21.png" alt="Команда «Даты начисления из текста»" loading="lazy"><span class="frame" style="left:71.5%;top:19%;width:26.5%;height:20%"></span></div><figcaption>Команда «Даты начисления из текста»</figcaption></figure>
+<div class="callout warn"><div class="callout-h">Частая ошибка</div><p>Дату, которую вы поправили вручную, команда не меняет.</p></div>
+<h2 id="если-дата-определилась-неверно">Если дата определилась неверно</h2>
+<p>Поправьте её в разделе <b>«Операции»</b>: прямо в списке (столбец даты начисления, формат ДД.ММ.ГГ) или в окне операции, поле <b>«Дата начисления»</b>. Под полем подсказка: в каком месяце операция попадёт в ОПУ.</p>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Платёж сразу за несколько месяцев (годовая страховка, аренда за квартал) лучше распределить по месяцам: окно операции → <b>«Распределить на период»</b>. Подробнее – в статье <a href="/help/operacii/razbienie.html">Разбиение суммы</a>.</p></div>
+<details class="quiz"><summary><span class="quiz-h">Проверьте себя</span>Зарплату за июнь выплатили 5 июля. В каком месяце она будет в ОПУ, а в каком в ОДДС?</summary><div class="quiz-a"><p>В ОПУ – в июне, если в основании есть «за июнь» (или дата начисления поправлена вручную). В ОДДС – в июле, по дате оплаты.</p></div></details></div><div class="related"><h3>Связанные статьи</h3><a href="/help/operacii/data-nachisleniya.html" class="">Дата начисления: кассовый метод и метод начисления</a><a href="/help/operacii/razbienie.html" class="">Разбиение суммы на части и на период</a><a href="/help/raznoska/bez-stati.html" class="">Разноска операций без статьи</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=9"></script>
+</body>
+</html>

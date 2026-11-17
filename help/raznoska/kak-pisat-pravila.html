@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как писать правила: слова, &amp; и ! – База знаний Финдикатора</title>
+<meta name="description" content="Условия правил на примерах">
+<link rel="stylesheet" href="/help/help.css?v=9">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/raznoska/kak-pisat-pravila.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/raznoska/kak-pisat-pravila.html">
+<meta property="og:title" content="Как писать правила: слова, &amp; и ! – База знаний Финдикатора">
+<meta property="og:description" content="Условия правил на примерах">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">🏷️ Разноска по статьям</div><a href="/help/raznoska/bez-stati.html" class="">Разноска операций без статьи</a><a href="/help/raznoska/pravila.html" class="">Правила разноски</a><a href="/help/raznoska/kak-pisat-pravila.html" class="">Как писать правила: слова, &amp; и !</a><a href="/help/raznoska/proverka-pravil.html" class="">Порядок и проверка правил</a><a href="/help/raznoska/daty-iz-teksta.html" class="">Даты начисления из текста платежа</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/raznoska/">Разноска по статьям</a><i>›</i><span>Как писать правила: слова, &amp; и !</span></nav><h1>Как писать правила: слова, &amp; и !</h1><p class="art-lead">Условия правил на примерах</p><div class="art-info"><span>👤 Финансисту</span><span>⏱ 5 минут</span></div><div class="art-body"><p>В правиле до трёх условий. Каждое условие – это <b>параметр</b> (где искать) и <b>значение</b> (что искать).</p>
+<h2 id="параметры">Параметры</h2>
+<div class="table-scroll"><table class="htable"><tr><th>Параметр</th><th>Где ищет</th></tr><tr><td><b>Контрагент</b></td><td>Название контрагента из 1С</td></tr><tr><td><b>Основание платежа</b></td><td>Назначение платежа</td></tr><tr><td><b>Примечание</b></td><td>Статья ДДС из 1С</td></tr><tr><td><b>Счет/касса</b></td><td>Название счёта в учёте</td></tr><tr><td><b>Компания</b></td><td>Компания группы</td></tr><tr><td><b>Направление</b></td><td>«Поступление» или «Списание»</td></tr></table></div>
+<h2 id="значение">Значение</h2>
+<ul><li><b>Кусок текста</b>, который должен встретиться. Регистр, кавычки и лишние пробелы не важны, «ё» = «е».</li><li><b>Часть слова</b> находит все формы: <code>электроэнерги</code> найдёт и «электроэнергия», и «электроэнергию».</li><li><code>&amp;</code> – должны встретиться <b>все</b> слова: <code>ремонт&amp;техническое</code>.</li><li><code>!</code> перед словом – этого слова <b>быть не должно</b>: <code>комиссия&amp;!возврат</code> – «комиссия», но не «возврат комиссии».</li></ul>
+<figure class="shot"><div class="shot-in"><img src="/help/img/52.png" alt="Окно правила: условия и подсказка по &amp; и !" loading="lazy"><span class="frame" style="left:22%;top:21%;width:56%;height:25%"></span><span class="frame" style="left:22%;top:68%;width:56%;height:7%"></span></div><figcaption>Окно правила: условия и подсказка по &amp; и !</figcaption></figure>
+<h2 id="примеры">Примеры</h2>
+<div class="table-scroll"><table class="htable"><tr><th>Условие 1</th><th>Условие 2</th><th>Статья</th></tr><tr><td>Контрагент: <code>Мегафон</code></td><td>Направление: <code>Списание</code></td><td>Интернет, услуги связи</td></tr><tr><td>Контрагент: <code>Автосервис Плюс</code></td><td>Основание: <code>осмотр</code></td><td>Медосмотры и медкнижки</td></tr><tr><td>Основание: <code>ремонт&amp;техническое обслуживание</code></td><td></td><td>Обслуживание и ремонт ТС</td></tr><tr><td>Основание: <code>комиссия&amp;!возврат</code></td><td></td><td>Банковские услуги и комиссии</td></tr><tr><td>Примечание: <code>Выплата заработной платы</code></td><td></td><td>Зарплата</td></tr></table></div>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Не пишите название целиком с формой собственности: «ООО „Ромашка“» в 1С может быть записано как «Ромашка ООО». Достаточно <code>ромашка</code>.</p></div>
+<div class="callout warn"><div class="callout-h">Частая ошибка</div><p>Слишком короткое значение ловит лишнее: <code>мтс</code> найдёт и «МТС», и «Сумтс-Транс». Добавьте второе условие (направление или основание) или напишите длиннее.</p></div>
+<details class="quiz"><summary><span class="quiz-h">Проверьте себя</span>Как одним правилом поймать все банковские комиссии, кроме возвратов комиссии?</summary><div class="quiz-a"><p>Основание платежа: комиссия&amp;!возврат → статья «Банковские услуги и комиссии».</p></div></details></div><div class="related"><h3>Связанные статьи</h3><a href="/help/raznoska/pravila.html" class="">Правила разноски</a><a href="/help/raznoska/proverka-pravil.html" class="">Порядок и проверка правил</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=9"></script>
+</body>
+</html>

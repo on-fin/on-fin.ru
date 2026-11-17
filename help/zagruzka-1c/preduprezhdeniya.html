@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сверка с 1С и жёлтые предупреждения – База знаний Финдикатора</title>
+<meta name="description" content="Что значат «совпадает», «не сошлось» и значки ⚠ при загрузке">
+<link rel="stylesheet" href="/help/help.css?v=9">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/zagruzka-1c/preduprezhdeniya.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/zagruzka-1c/preduprezhdeniya.html">
+<meta property="og:title" content="Сверка с 1С и жёлтые предупреждения – База знаний Финдикатора">
+<meta property="og:description" content="Что значат «совпадает», «не сошлось» и значки ⚠ при загрузке">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">📥 Загрузка из 1С</div><a href="/help/zagruzka-1c/kartochka-v-1c.html" class="">Как сформировать карточку счёта в 1С</a><a href="/help/zagruzka-1c/zagruzka-kartochki.html" class="">Загрузка карточки 51/50 из 1С</a><a href="/help/zagruzka-1c/predprosmotr.html" class="">Предпросмотр новых операций</a><a href="/help/zagruzka-1c/preduprezhdeniya.html" class="">Сверка с 1С и жёлтые предупреждения</a><a href="/help/zagruzka-1c/dubli.html" class="">Повторная загрузка и дубли</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/zagruzka-1c/">Загрузка из 1С</a><i>›</i><span>Сверка с 1С и жёлтые предупреждения</span></nav><h1>Сверка с 1С и жёлтые предупреждения</h1><p class="art-lead">Что значат «совпадает», «не сошлось» и значки ⚠ при загрузке</p><div class="art-info"><span>👤 Бухгалтеру</span><span>⏱ 4 минуты</span></div><div class="art-body"><p>Финдикатор сверяет каждую загрузку с 1С дважды: до загрузки – по самой карточке, после – по счёту.</p>
+<h2 id="до-загрузки-обороты-карточки">До загрузки: обороты карточки</h2>
+<p>Когда карточка прочитана, окно сравнивает сумму всех операций с последней строкой карточки <b>«Обороты за период»</b>:</p>
+<ul><li><b>✓ Обороты сходятся с итогом карточки</b> – всё прочитано полностью.</li><li><b>⚠ Обороты не сходятся с итогом карточки</b> – часть строк не прочиталась или карточка изменена в Excel. Окно покажет, какой приход и расход стоит в итоге 1С. Выгрузите карточку заново, не правя её.</li></ul>
+<figure class="shot"><div class="shot-in"><img src="/help/img/16.png" alt="Обороты не сходятся с итогом карточки" loading="lazy"><span class="frame" style="left:20.8%;top:40%;width:58.5%;height:7%"></span></div><figcaption>Обороты не сходятся с итогом карточки</figcaption></figure>
+<h2 id="жёлтые-предупреждения">Жёлтые предупреждения ⚠</h2>
+<p>Они появляются, если карточка отличается от обычной. Это подсказка, а не запрет: загрузить можно, но стоит проверить. Например:</p>
+<ul><li>есть промежуточные итоги по дням или месяцам – уберите разбивку по периодам в настройках отчёта 1С;</li><li>сумма взята не из столбца рядом со счётом;</li><li>нет строки «Обороты за период» – сверить загрузку не получится;</li><li>есть строки без даты или без суммы;</li><li>компания в карточке не совпадает с компанией счёта в учёте.</li></ul>
+<p>Если нужных столбцов нет совсем, карточка не загрузится, и окно напишет, каких столбцов не хватает. Как настроить отчёт, читайте в статье <a href="/help/zagruzka-1c/kartochka-v-1c.html">Как сформировать карточку счёта в 1С</a>.</p>
+<h2 id="после-загрузки-сверка-с-1с-по-счёту">После загрузки: «Сверка с 1С» по счёту</h2>
+<p>Внизу раздела <b>«Загрузка из 1С»</b> – таблица счетов. В столбце <b>«Сверка с 1С»</b> результат последней загрузки:</p>
+<div class="table-scroll"><table class="htable"><tr><th>Значок</th><th>Что значит</th></tr><tr><td><b>совпадает</b></td><td>Обороты загрузки сошлись с итогом карточки</td></tr><tr><td><b>не сошлось</b></td><td>Расхождение. Наведите мышь – появится подробность</td></tr><tr><td><b>не проверено</b></td><td>В карточке не было строки «Обороты за период»</td></tr></table></div>
+<figure class="shot"><div class="shot-in"><img src="/help/img/19.png" alt="Счета и сверка с 1С" loading="lazy"><span class="frame" style="left:79.5%;top:63%;width:18%;height:30%"></span></div><figcaption>Счета и сверка с 1С</figcaption></figure>
+<p>Если не сошлось, это видно и сразу после загрузки, в панели <b>«Готово»</b>:</p>
+<figure class="shot"><div class="shot-in"><img src="/help/img/18.png" alt="Сверка с 1С: НЕ сошлось" loading="lazy"><span class="frame" style="left:20.5%;top:37%;width:72%;height:5%"></span></div><figcaption>Сверка с 1С: НЕ сошлось</figcaption></figure>
+<p>Общая проверка всех счетов – в разделе <b>«Сегодня»</b>, строка <b>«Загрузки сходятся с карточками 1С»</b>. Подробнее – в статье <a href="/help/otchety/kontrol.html">Контроль учёта</a>.</p>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Если не сошлось и непонятно почему – пришлите карточку в поддержку: поможем настроить отчёт или доработаем загрузку.</p></div></div><div class="related"><h3>Связанные статьи</h3><a href="/help/zagruzka-1c/kartochka-v-1c.html" class="">Как сформировать карточку счёта в 1С</a><a href="/help/zagruzka-1c/zagruzka-kartochki.html" class="">Загрузка карточки 51/50 из 1С</a><a href="/help/otchety/kontrol.html" class="">Контроль учёта: все проверки</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=9"></script>
+</body>
+</html>

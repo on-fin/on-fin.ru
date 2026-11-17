@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, '_src')
 PAGES = os.path.join(SRC, 'pages')
 INSTRUCTION_MD = os.path.join(os.path.dirname(ROOT), 'Инструкция по настройке и работе.md')
-CSS_VERSION = '8'
+CSS_VERSION = '9'
 SITE = 'https://findikator.ru'
 
 
@@ -161,6 +161,10 @@ def main():
         if rel != '404.html' and rel not in drafts:
             urls.append(url)
         print('  ' + rel)
+
+    # База знаний /help (свой шаблон, см. _help.py)
+    import _help
+    urls += _help.build({'cssv': CSS_VERSION})
 
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

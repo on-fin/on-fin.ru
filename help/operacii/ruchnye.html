@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ручные операции – База знаний Финдикатора</title>
+<meta name="description" content="Как внести то, чего нет в выписке 1С: наличные вне кассы и начисления без оплаты">
+<link rel="stylesheet" href="/help/help.css?v=9">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/operacii/ruchnye.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/operacii/ruchnye.html">
+<meta property="og:title" content="Ручные операции – База знаний Финдикатора">
+<meta property="og:description" content="Как внести то, чего нет в выписке 1С: наличные вне кассы и начисления без оплаты">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">✍️ Операции</div><a href="/help/operacii/spisok.html" class="">Список операций и отбор</a><a href="/help/operacii/okno-operacii.html" class="">Окно операции</a><a href="/help/operacii/razbienie.html" class="">Разбиение суммы на части и на период</a><a href="/help/operacii/ruchnye.html" class="">Ручные операции</a><a href="/help/operacii/data-nachisleniya.html" class="">Дата начисления: кассовый метод и метод начисления</a><a href="/help/operacii/oplata-nachisleniya.html" class="">Оплата ручного начисления</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/operacii/">Операции</a><i>›</i><span>Ручные операции</span></nav><h1>Ручные операции</h1><p class="art-lead">Как внести то, чего нет в выписке 1С: наличные вне кассы и начисления без оплаты</p><div class="art-info"><span>👤 Финансисту, бухгалтеру</span><span>⏱ 5 минут</span></div><div class="art-body"><p>Почти все операции приходят из 1С. Вручную вносится только то, чего в выписке нет:</p>
+<ul><li><b>наличные вне кассы</b> – например, «наличные директора»;</li><li><b>начисление без оплаты</b> – аренда или зарплата за месяц, которые ещё не оплачены, выручка по акту до поступления денег.</li></ul>
+<h2 id="как-добавить">Как добавить</h2>
+<ol><li>Раздел <b>«Операции»</b> → <b>«+ Добавить операцию»</b>.</li><li>Выберите вариант <b>«Оплата»</b>:<ul><li><b>«Оплачено»</b> – деньги уже прошли. Операция попадёт в ОПУ, ОДДС и остатки счёта.</li><li><b>«Ждём оплату»</b> – начисление без оплаты. Попадёт в ОПУ и в дебиторку (поступление) или кредиторку (выплата) в «Балансе», а в платёжном календаре станет ожидаемым платежом.</li></ul></li><li>Заполните поля: дата оплаты (или <b>ожидаемая дата оплаты</b>), счёт, контрагент, сумма (минус – выплата), статья, дата начисления, примечание.</li><li><b>«Сохранить»</b>.</li></ol>
+<figure class="shot"><div class="shot-in"><img src="/help/img/67.png" alt="Новая ручная операция" loading="lazy"><span class="frame" style="left:36.5%;top:13%;width:40%;height:17%"></span></div><figcaption>Новая ручная операция</figcaption></figure>
+<h2 id="новый-счёт-вне-1с">Новый счёт «вне 1С»</h2>
+<p>Для наличных, которых нет в кассе 1С, в поле <b>«Счёт»</b> выберите <b>«+ Новый счёт…»</b> и введите название, например «Наличные директора». Счёт появится на листе «Счета» с пометкой «вне 1С». В остатках ОДДС он появится после <b>«Перестроить отчёты»</b>.</p>
+<h2 id="как-отличить-ручную-операцию">Как отличить ручную операцию</h2>
+<p>В списке у неё пометка <b>«вручную»</b>, у начисления – <b>«ждём оплату»</b>. Отбор <b>«Неоплаченные начисления»</b> показывает все начисления, по которым ещё нет оплаты.</p>
+<h2 id="правка-и-удаление">Правка и удаление</h2>
+<p>Ручную операцию можно открыть, поправить и <b>удалить</b> (кнопка <b>«Удалить»</b> в окне операции). Удалённую ручную операцию вернуть нельзя.</p>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Когда оплата по начислению придёт из 1С, свяжите её с начислением в разделе «Разноска». Подробнее – в статье <a href="/help/operacii/oplata-nachisleniya.html">Оплата ручного начисления</a>.</p></div>
+<div class="callout warn"><div class="callout-h">Частая ошибка</div><p>Не вносите вручную то, что есть в 1С: при загрузке появится вторая такая же операция.</p></div>
+<details class="quiz"><summary><span class="quiz-h">Проверьте себя</span>Аренду за ноябрь платят 5 декабря. Как увидеть её в ОПУ ноября уже 30 ноября?</summary><div class="quiz-a"><p>Добавить ручную операцию «Ждём оплату» с датой начисления 30.11 и ожидаемой датой оплаты 05.12. Когда оплата придёт из 1С, связать её с начислением в «Разноске».</p></div></details></div><div class="kurs-box"><div class="kurs-box-h">🎓 Курс новичка · статья 7 из 12</div><label class="kurs-read"><input type="checkbox" data-url="/help/operacii/ruchnye.html"> Прочитано, всё понятно</label><a class="kurs-next" href="/help/operacii/data-nachisleniya.html">Дальше: Дата начисления: кассовый метод и метод начисления →</a></div><div class="related"><h3>Связанные статьи</h3><a href="/help/operacii/oplata-nachisleniya.html" class="">Оплата ручного начисления</a><a href="/help/operacii/spisok.html" class="">Список операций и отбор</a><a href="/help/kalendar/kak-ustroen.html" class="">Платёжный календарь</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=9"></script>
+</body>
+</html>

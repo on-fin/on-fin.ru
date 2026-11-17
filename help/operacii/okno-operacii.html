@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Окно операции – База знаний Финдикатора</title>
+<meta name="description" content="Все поля операции, правило в одну галочку, разбиение и переход к строке на листе">
+<link rel="stylesheet" href="/help/help.css?v=9">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/operacii/okno-operacii.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/operacii/okno-operacii.html">
+<meta property="og:title" content="Окно операции – База знаний Финдикатора">
+<meta property="og:description" content="Все поля операции, правило в одну галочку, разбиение и переход к строке на листе">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">✍️ Операции</div><a href="/help/operacii/spisok.html" class="">Список операций и отбор</a><a href="/help/operacii/okno-operacii.html" class="">Окно операции</a><a href="/help/operacii/razbienie.html" class="">Разбиение суммы на части и на период</a><a href="/help/operacii/ruchnye.html" class="">Ручные операции</a><a href="/help/operacii/data-nachisleniya.html" class="">Дата начисления: кассовый метод и метод начисления</a><a href="/help/operacii/oplata-nachisleniya.html" class="">Оплата ручного начисления</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/operacii/">Операции</a><i>›</i><span>Окно операции</span></nav><h1>Окно операции</h1><p class="art-lead">Все поля операции, правило в одну галочку, разбиение и переход к строке на листе</p><div class="art-info"><span>👤 Бухгалтеру, финансисту</span><span>⏱ 5 минут</span></div><div class="art-body"><p>Окно операции открывается щелчком по строке в разделе <b>«Операции»</b>, в расшифровке отчёта или в предпросмотре загрузки.</p>
+<figure class="shot"><div class="shot-in"><img src="/help/img/64.png" alt="Окно операции" loading="lazy"><span class="mk" style="left:36.5%;top:39%">1</span><span class="frame" style="left:36.5%;top:39%;width:10%;height:4.5%"></span><span class="mk" style="left:36.5%;top:52%">2</span><span class="frame" style="left:36.5%;top:52%;width:17%;height:5%"></span><span class="mk" style="left:35.5%;top:90%">3</span><span class="frame" style="left:35.5%;top:90%;width:13.5%;height:5.5%"></span></div><figcaption>Окно операции</figcaption></figure>
+<ol><li><b>«Разбить сумму»</b>.</li><li><b>«Распределить на период»</b>.</li><li><b>«Показать на листе»</b>.</li></ol>
+<h2 id="поля">Поля</h2>
+<div class="table-scroll"><table class="htable"><tr><th>Поле</th><th>Что это</th></tr><tr><td><b>Дата оплаты</b></td><td>Когда прошли деньги. По ней операция попадает в ОДДС</td></tr><tr><td><b>Счёт и компания</b></td><td>Расчётный счёт или касса</td></tr><tr><td><b>Контрагент</b></td><td>Как в 1С</td></tr><tr><td><b>Основание платежа</b></td><td>Назначение платежа из 1С</td></tr><tr><td><b>Сумма</b></td><td>Минус – выплата, без знака – поступление</td></tr><tr><td><b>Статья</b></td><td>Статья учёта. Поиск по названию, внизу <b>«+ Новая статья»</b></td></tr><tr><td><b>Дата начисления</b></td><td>Месяц, в который операция попадёт в ОПУ. Подробнее – в статье <a href="/help/operacii/data-nachisleniya.html">Дата начисления</a></td></tr><tr><td><b>Внутри группы</b></td><td>Платёж между компаниями группы: в отчёт по всей группе не входит. Отмечается сам</td></tr><tr><td><b>Правило</b></td><td>Каким правилом разнесена операция, или «статья поставлена вручную», или «нет правила»</td></tr><tr><td><b>Примечание</b></td><td>Статья ДДС из 1С или ваша пометка</td></tr></table></div>
+<h2 id="создать-правило">Создать правило</h2>
+<p>Под статьёй – галочка <b>«Создать правило: операции этого контрагента с тем же направлением разносить сюда автоматически»</b>. Правило добавится в конец списка правил.</p>
+<h2 id="действия">Действия</h2>
+<ul><li><b>«Разбить сумму»</b> – одна оплата на несколько статей, контрагентов или месяцев. Подробнее – в статье <a href="/help/operacii/razbienie.html">Разбиение суммы</a>.</li><li><b>«Распределить на период»</b> – годовую страховку или аренду за квартал по месяцам.</li><li><b>«Показать на листе»</b> – закрыть окно и выделить эту строку на листе «Операции».</li><li><b>«Сохранить»</b> – записать изменения. Статья, поставленная здесь, считается ручной: правила её больше не трогают.</li></ul>
+<h2 id="если-поправить-данные-1с">Если поправить данные 1С</h2>
+<p>Дату оплаты, контрагента, основание и сумму можно исправить, если в 1С ошибка, а исправить там нельзя. Операция получит пометку <b>«исправлено»</b> – «Данные из 1С исправлены вручную». При повторной загрузке карточки такая строка с 1С не сверяется и не перезаписывается.</p>
+<div class="callout warn"><div class="callout-h">Частая ошибка</div><p>Лучше исправлять ошибки в 1С и загружать карточку заново. Ручная правка данных 1С – крайний случай.</p></div>
+<h2 id="удаление">Удаление</h2>
+<p><b>«Удалить»</b> убирает операцию из учёта (строку листа «Операции»). Разбитая операция удаляется целиком, со всеми частями.</p>
+<ul><li><b>Ручную операцию</b> вернуть нельзя.</li><li><b>Операция из 1С</b> при следующей загрузке карточки появится снова, в исходном виде, без ваших правок. Так можно отменить неудачные правки. Если включена галочка «не загружать раньше последней даты», снимите её, когда загружаете старые дни.</li></ul>
+<details class="quiz"><summary><span class="quiz-h">Проверьте себя</span>Вы поменяли статью в окне операции. Перезапишет ли её правило при следующей загрузке?</summary><div class="quiz-a"><p>Нет. Статья, поставленная вручную, считается ручной, и правила её больше не трогают, даже командой «Обновить автоматические».</p></div></details></div><div class="related"><h3>Связанные статьи</h3><a href="/help/operacii/spisok.html" class="">Список операций и отбор</a><a href="/help/operacii/razbienie.html" class="">Разбиение суммы на части и на период</a><a href="/help/operacii/data-nachisleniya.html" class="">Дата начисления: кассовый метод и метод начисления</a><a href="/help/raznoska/pravila.html" class="">Правила разноски</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=9"></script>
+</body>
+</html>

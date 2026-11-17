@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Порядок и проверка правил – База знаний Финдикатора</title>
+<meta name="description" content="Почему сработало не то правило и как найти ошибки">
+<link rel="stylesheet" href="/help/help.css?v=9">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/raznoska/proverka-pravil.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/raznoska/proverka-pravil.html">
+<meta property="og:title" content="Порядок и проверка правил – База знаний Финдикатора">
+<meta property="og:description" content="Почему сработало не то правило и как найти ошибки">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">🏷️ Разноска по статьям</div><a href="/help/raznoska/bez-stati.html" class="">Разноска операций без статьи</a><a href="/help/raznoska/pravila.html" class="">Правила разноски</a><a href="/help/raznoska/kak-pisat-pravila.html" class="">Как писать правила: слова, &amp; и !</a><a href="/help/raznoska/proverka-pravil.html" class="">Порядок и проверка правил</a><a href="/help/raznoska/daty-iz-teksta.html" class="">Даты начисления из текста платежа</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/raznoska/">Разноска по статьям</a><i>›</i><span>Порядок и проверка правил</span></nav><h1>Порядок и проверка правил</h1><p class="art-lead">Почему сработало не то правило и как найти ошибки</p><div class="art-info"><span>👤 Финансисту</span><span>⏱ 4 минуты</span></div><div class="art-body"><h2 id="проверить-правила">Проверить правила</h2>
+<p><b>Разноска → Команды → Проверить правила → Выполнить</b> или кнопка <b>«Проверить правила»</b> в <b>Настройке → Правила разноски</b>.</p>
+<p>Команда ничего не меняет, только показывает правила с ошибками:</p>
+<ul><li>пустые правила;</li><li>правила со статьёй, которой нет в справочнике (например, статью переименовали на листе вручную или удалили);</li><li>правила с неизвестным параметром.</li></ul>
+<figure class="shot"><div class="shot-in"><img src="/help/img/53.png" alt="Результат проверки правил" loading="lazy"><span class="frame" style="left:70%;top:30%;width:13.5%;height:7.5%"></span><span class="frame" style="left:17.5%;top:40%;width:80.5%;height:9%"></span></div><figcaption>Результат проверки правил</figcaption></figure>
+<p>Исправьте найденное в <b>Настройке → Правила разноски</b>: щелчок по правилу открывает его.</p>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Запускайте проверку после любых изменений справочника статей.</p></div>
+<h2 id="почему-сработало-не-то-правило">Почему сработало не то правило</h2>
+<ol><li>Откройте операцию в разделе <b>«Операции»</b>: в поле <b>«Правило»</b> видно, каким правилом разнесена операция, например «разнесена правилом П12».</li><li>Найдите это правило в <b>Настройке → Правила разноски</b> по номеру.</li><li>Скорее всего, оно слишком общее и стоит выше нужного. Переместите нужное правило выше стрелкой <b>↑</b> или уточните общее правило вторым условием.</li><li>Нажмите <b>Разноска → Обновить автоматические</b>, чтобы переразнести операции по новому порядку.</li></ol>
+<h2 id="порядок-правил">Порядок правил</h2>
+<ul><li>Правила проверяются <b>сверху вниз</b>, срабатывает <b>первое подходящее</b>.</li><li>Частные правила (контрагент + основание) ставьте <b>выше</b> общих (только основание).</li><li>Правила, созданные из подсказок и окна операции, добавляются <b>в конец</b> списка.</li><li>Типовые правила добавляются в конец и срабатывают после ваших.</li></ul>
+<details class="quiz"><summary><span class="quiz-h">Проверьте себя</span>У операции в поле «Правило» написано «нет правила». Что это значит?</summary><div class="quiz-a"><p>Ни одно правило не подошло. Поставьте статью вручную или в «Разноске» с галочкой «создать», чтобы такие платежи дальше разносились сами.</p></div></details></div><div class="related"><h3>Связанные статьи</h3><a href="/help/raznoska/pravila.html" class="">Правила разноски</a><a href="/help/raznoska/kak-pisat-pravila.html" class="">Как писать правила: слова, &amp; и !</a><a href="/help/nastroyka/spravochnik-statey.html" class="">Справочник статей</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=9"></script>
+</body>
+</html>
