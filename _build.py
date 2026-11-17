@@ -1,4 +1,4 @@
-# Сборка сайта on-fin.ru: страницы из _src/pages вставляются в общий шаблон _src/layout.html
+# Сборка сайта findikator.ru (до 17.11.2026 — on-fin.ru): страницы из _src/pages вставляются в общий шаблон _src/layout.html
 # (шапка, меню, блок «Демонстрация», подвал) и сохраняются в корень сайта по тем же путям.
 # Страница «Инструкция» собирается из файла «Инструкция по настройке и работе.md» в папке проекта.
 # Запуск: python _build.py   (папки и файлы с «_» GitHub Pages не публикует)
@@ -12,7 +12,7 @@ SRC = os.path.join(ROOT, '_src')
 PAGES = os.path.join(SRC, 'pages')
 INSTRUCTION_MD = os.path.join(os.path.dirname(ROOT), 'Инструкция по настройке и работе.md')
 CSS_VERSION = '8'
-SITE = 'https://on-fin.ru'
+SITE = 'https://findikator.ru'
 
 
 def read(path):
@@ -126,8 +126,8 @@ def instruction_page():
     md = '\n'.join(lines)
     md = re.sub(r'^Инструкция для клиента.*$', '', md, count=1, flags=re.M)
     body = md_to_html(md)
-    return ({'title': 'Инструкция по настройке и работе – ФинУчет',
-             'description': 'Как настроить ФинУчет и работать с ним каждый день: загрузка из 1С, справочник статей, правила разноски, отчёты, платёжный календарь, группа компаний, закрытие года.'},
+    return ({'title': 'Инструкция по настройке и работе – Финдикатор',
+             'description': 'Как настроить Финдикатор и работать с ним каждый день: загрузка из 1С, справочник статей, правила разноски, отчёты, платёжный календарь, группа компаний, закрытие года.'},
             '<div class="page-head"><div class="wrap">\n'
             '<p class="crumbs"><a href="/">Главная</a> → Полезное</p>\n'
             '<h1>Инструкция по настройке и работе</h1>\n'
@@ -152,7 +152,7 @@ def main():
     for rel, meta, body in pages:
         url = '/' +(rel[:-len('index.html')] if rel.endswith('index.html') else rel)
         page = (layout.replace('{{content}}', body)
-                .replace('{{title}}', html.escape(meta.get('title', 'ФинУчет')))
+                .replace('{{title}}', html.escape(meta.get('title', 'Финдикатор')))
                 .replace('{{description}}', html.escape(meta.get('description', '')))
                 .replace('{{url}}', url)
                 .replace('{{cssv}}', CSS_VERSION))

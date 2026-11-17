@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://on-fin.ru/sitemap.xml
+Sitemap: https://findikator.ru/sitemap.xml
