@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Загрузка операций из Excel – База знаний Финдикатора</title>
+<meta name="description" content="Наличные, которые ведут не в 1С, и перенос учёта из Excel – по шаблону за несколько минут">
+<link rel="stylesheet" href="/help/help.css?v=10">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://findikator.ru/help/zagruzka-1c/iz-excel.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://findikator.ru/help/zagruzka-1c/iz-excel.html">
+<meta property="og:title" content="Загрузка операций из Excel – База знаний Финдикатора">
+<meta property="og:description" content="Наличные, которые ведут не в 1С, и перенос учёта из Excel – по шаблону за несколько минут">
+<meta property="og:image" content="https://findikator.ru/img/og.png">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body class="article">
+
+<header class="htop">
+  <div class="hwrap hbar">
+    <a class="hlogo" href="/help/"><img src="/img/findikator-logo-short-dark.svg" alt="Финдикатор" height="28"><span>База знаний</span></a>
+    <div class="hsearch top"><input type="search" class="hq" placeholder="Введите свой вопрос" autocomplete="off" aria-label="Поиск по базе знаний"><div class="hres" hidden></div></div>
+    <a class="hsite" href="/">На сайт <span>↗</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">📥 Загрузка данных</div><a href="/help/zagruzka-1c/kartochka-v-1c.html" class="">Как сформировать карточку счёта в 1С</a><a href="/help/zagruzka-1c/zagruzka-kartochki.html" class="">Загрузка карточки 51/50 из 1С</a><a href="/help/zagruzka-1c/predprosmotr.html" class="">Предпросмотр новых операций</a><a href="/help/zagruzka-1c/preduprezhdeniya.html" class="">Сверка с 1С и жёлтые предупреждения</a><a href="/help/zagruzka-1c/dubli.html" class="">Повторная загрузка и дубли</a><a href="/help/zagruzka-1c/iz-excel.html" class="">Загрузка операций из Excel</a></aside><article class="art"><nav class="hcrumbs"><a href="/help/">База знаний</a><i>›</i><a href="/help/zagruzka-1c/">Загрузка данных</a><i>›</i><span>Загрузка операций из Excel</span></nav><h1>Загрузка операций из Excel</h1><p class="art-lead">Наличные, которые ведут не в 1С, и перенос учёта из Excel – по шаблону за несколько минут</p><div class="art-info"><span>👤 Финансисту, кассиру, тому, кто переходит на Финдикатор</span><span>⏱ 10 минут</span></div><div class="art-body"><p>Не все деньги проходят через 1С. Касса магазина или офиса часто ведётся в Excel, а у тех, кто только переходит на Финдикатор, весь учёт с начала года уже лежит в таблице со статьями и разбивками. Такие операции загружаются по шаблону: статьи и разбивки переносятся как есть.</p>
+<h2 id="шаг-1-скачайте-шаблон">Шаг 1. Скачайте шаблон</h2>
+<p><b>Финансы → Открыть Финдикатор → Загрузка</b>, вверху выберите <b>«Excel по шаблону»</b> и нажмите <b>«⬇ Скачать шаблон»</b>. Файл «Финдикатор – шаблон загрузки» появится в папке «Загрузки».</p>
+<figure class="shot"><div class="shot-in"><img src="/help/img/115.png" alt="Загрузка из Excel по шаблону" loading="lazy"><span class="frame" style="left:28%;top:23.5%;width:12%;height:6.5%"></span><span class="frame" style="left:18.7%;top:60.5%;width:12.2%;height:7.5%"></span></div><figcaption>Загрузка из Excel по шаблону</figcaption></figure>
+<p>В шаблоне три листа:</p>
+<ul><li><b>«Операции»</b> – сюда вносите данные. Столбцы те же, что на листе «Операции» вашей таблицы;</li><li><b>«Как заполнять»</b> – что писать в каждом столбце и пример с разбивкой;</li><li><b>«Справочник»</b> – статьи, счета и кассы <b>вашей</b> таблицы. Поэтому шаблон лучше скачивать заново, если справочник менялся.</li></ul>
+<h2 id="шаг-2-заполните-лист-операции">Шаг 2. Заполните лист «Операции»</h2>
+<p>Одна строка – одна операция (или одна часть разбитой операции).</p>
+<div class="table-scroll"><table class="htable"><tr><th>Столбец</th><th>Обязательно</th><th>Что писать</th></tr><tr><td>Дата оплаты</td><td>да</td><td>дата движения денег, дд.мм.гггг</td></tr><tr><td>Дата начисления</td><td>нет</td><td>за какой месяц доход или расход; пусто – как дата оплаты</td></tr><tr><td>Счет/касса</td><td>да</td><td>из выпадающего списка; можно вписать новое название, например «Касса офиса»</td></tr><tr><td>Компания</td><td>для нового счёта</td><td>к какой компании относится новая касса или счёт</td></tr><tr><td>Контрагент, Основание платежа, Примечание</td><td>нет</td><td>как в 1С: по ним работают правила разноски</td></tr><tr><td>Сумма</td><td>да</td><td>приход – с плюсом, расход – с минусом</td></tr><tr><td>Статья доходов/расходов</td><td>нет</td><td>из выпадающего списка; пусто – статью назначат правила или вы вручную</td></tr></table></div>
+<figure class="shot"><div class="shot-in"><img src="/help/img/116.png" alt="Заполненный шаблон: статья выбирается из списка" loading="lazy"><span class="frame" style="left:81%;top:14.5%;width:18%;height:70%"></span></div><figcaption>Заполненный шаблон: статья выбирается из списка</figcaption></figure>
+<p><b>Разбивка:</b> одна оплата на несколько статей – несколько строк с одной датой и контрагентом, у каждой своя сумма и статья.</p>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Данные можно вставить из своей таблицы целиком: скопируйте столбцы и вставьте их в шаблон через <b>«Специальная вставка → Значения»</b>. Порядок строк не важен.</p></div>
+<h2 id="шаг-3-выберите-файл-и-проверьте">Шаг 3. Выберите файл и проверьте</h2>
+<p>Перетащите заполненный файл в рамку <b>«Перетащите сюда заполненный шаблон»</b> или нажмите на неё и выберите файл. Сначала окно ничего не загружает, а только проверяет:</p>
+<ul><li>сколько операций загрузится и сколько из них без статьи;</li><li>приход и расход по каждому счёту и кассе – сравните с остатками в своём учёте;</li><li>новые счета и кассы – с пометкой <b>«новый»</b> и компанией;</li><li>ошибки с номерами строк: нет даты, не читается сумма, неизвестная статья.</li></ul>
+<figure class="shot"><div class="shot-in"><img src="/help/img/117.png" alt="Проверка файла: в строке 3 не указана касса" loading="lazy"><span class="frame" style="left:24.5%;top:70%;width:15.5%;height:5.5%"></span><span class="frame" style="left:18.5%;top:76.5%;width:31%;height:12%"></span></div><figcaption>Проверка файла: в строке 3 не указана касса</figcaption></figure>
+<p>Когда ошибок нет, появляется кнопка «Загрузить»:</p>
+<figure class="shot"><div class="shot-in"><img src="/help/img/119.png" alt="Проверка без ошибок" loading="lazy"><span class="frame" style="left:18.8%;top:73%;width:14.2%;height:7%"></span></div><figcaption>Проверка без ошибок</figcaption></figure>
+<p>Пока в файле есть ошибки или статьи, которых нет в справочнике, кнопки «Загрузить» нет. Исправьте файл (или добавьте статью: <b>Настройка → Справочник статей</b>) и выберите его снова.</p>
+<div class="callout warn"><div class="callout-h">Частая ошибка</div><p>Загружаются только операции текущего отчётного года (он указан на «Титуле»). Строки за другие годы окно пропустит и скажет, сколько их.</p></div>
+<h2 id="шаг-4-загрузите">Шаг 4. Загрузите</h2>
+<p>Нажмите <b>«Загрузить N операций»</b>. Операции добавятся на лист «Операции», новые кассы – на лист «Счета».</p>
+<figure class="shot"><div class="shot-in"><img src="/help/img/118.png" alt="Готово" loading="lazy"><span class="frame" style="left:18.5%;top:45%;width:60%;height:11%"></span></div><figcaption>Готово</figcaption></figure>
+<p>Что сделать после загрузки:</p>
+<ol><li><b>Строки без статьи</b> – вкладка «Разноска»: назначьте статьи по правилам или вручную.</li><li><b>Новые кассы и счета</b> – внесите их входящие остатки и перестройте отчёты (<a href="/help/nastroyka/perestroit-otchety.html">Перестроить отчёты</a>), чтобы они появились в ОДДС.</li><li><b>Сверьте остатки</b> по каждой кассе и счёту с реальными.</li></ol>
+<div class="callout warn"><div class="callout-h">Частая ошибка</div><p><b>Повторная загрузка того же файла добавит операции ещё раз</b> – система не ищет дубли в файлах Excel. Если ошиблись, удалите лишние строки на вкладке «Операции» (отбор по счёту и месяцу) и загрузите исправленный файл.</p></div>
+<div class="callout tip"><div class="callout-h">Полезно знать</div><p>Статьи из файла считаются поставленными вручную: кнопка «Обновить автоматические» на «Разноске» их не перепишет.</p></div>
+<h2 id="excel-и-1с-по-одному-счёту">Excel и 1С по одному счёту</h2>
+<p>Если банк загружается из 1С, через Excel загружайте только то, чего в 1С нет, – например, кассу, которую в 1С не ведут. Если история с начала года уже есть в Excel, а дальше будете загружать карточки 1С, следите, чтобы периоды не пересекались: иначе операции задвоятся.</p>
+<details class="quiz"><summary><span class="quiz-h">Проверьте себя</span>Нужно перенести кассу, которую вели в Excel, с января по октябрь. Касса в 1С не ведётся. Что делать?</summary><div class="quiz-a"><p>Скачать шаблон, вставить операции значениями, в столбце «Счет/касса» вписать новое название кассы и компанию, загрузить. Затем внести входящий остаток кассы на 1 января, перестроить отчёты и сверить остаток на сегодня с реальным.</p></div></details></div><div class="related"><h3>Связанные статьи</h3><a href="/help/zagruzka-1c/zagruzka-kartochki.html" class="">Загрузка карточки 51/50 из 1С</a><a href="/help/nachalo/pervaya-nastroyka.html" class="">Первоначальная настройка по шагам</a><a href="/help/nastroyka/scheta.html" class="">Счета и кассы</a><a href="/help/raznoska/bez-stati.html" class="">Разноска операций без статьи</a></div><div class="ask">Не нашли ответ? Напишите нам в <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> или на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> – ответим и допишем статью.</div></article></div></section>
+</main>
+
+<footer class="hfoot">
+  <div class="hwrap">
+    <span>© 2026 Финдикатор · Управленческий учёт для компаний на 1С в Google Таблицах</span>
+    <span><a href="/">findikator.ru</a> · <a href="https://t.me/ochirnn" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:on@r140.ru">on@r140.ru</a></span>
+  </div>
+</footer>
+
+<div class="zoom" id="zoom" hidden><img alt=""></div>
+<script src="/help/help.js?v=10"></script>
+</body>
+</html>
