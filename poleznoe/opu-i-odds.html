@@ -242,7 +242,7 @@
     });
   });
   // Заявка на пробу 14 дней: отправляется на сервер Финдикатора (адрес — в /api.json), он пишет её в «Заявки» и в Telegram
-  var tf = document.getElementById('trialForm');
+  var tf = document.getElementById('trialForm'), t0 = Date.now();
   if (tf) tf.addEventListener('submit', function (e) {
     e.preventDefault();
     var msg = document.getElementById('trialMsg'), btn = tf.querySelector('button[type=submit]');
@@ -253,7 +253,7 @@
       !tf.elements.consent.checked ? 'Отметьте согласие на обработку данных.' : '';
     if (err) { msg.textContent = err; msg.className = 'trial-msg bad'; return; }
     var data = { name: v('name'), email: v('email'), contact: v('contact'), company: v('company'), firms: v('firms'),
-      comment: v('comment'), website: v('website'), consent: true };
+      comment: v('comment'), website: v('website'), consent: true, t: Math.round((Date.now() - t0) / 1000) };
     btn.disabled = true; msg.textContent = 'Отправляем…'; msg.className = 'trial-msg';
     var fail = function (t) { btn.disabled = false; msg.textContent = t || 'Не получилось отправить. Напишите, пожалуйста, в Telegram @ochirnn.'; msg.className = 'trial-msg bad'; };
     fetch('/api.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (api) {
