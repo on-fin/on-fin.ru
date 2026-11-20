@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Вопросы и ответы – Финдикатор</title>
 <meta name="description" content="Ответы на частые вопросы о Финдикаторе: работа с 1С, хранение данных, лицензия и поддержка, настройка, группа компаний, ежедневная работа.">
-<link rel="stylesheet" href="/style.css?v=10">
+<link rel="stylesheet" href="/style.css?v=11">
 <link rel="icon" href="/favicon.ico?v=3" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3">
@@ -75,7 +75,7 @@
           <a href="/poleznoe/pravovaya.html">Правовая информация</a>
         </div>
       </div>
-      <a class="btn btn-head" href="#demo">Демонстрация</a>
+      <a class="btn btn-head" href="#trial">Попробовать бесплатно</a>
     </nav>
   </div>
 </header>
@@ -160,14 +160,35 @@
 
 <section id="demo" class="demo-section">
   <div class="wrap">
-    <div class="demo-box">
-      <h2>Получить демонстрацию</h2>
-      <p>Покажем Финдикатор на демо-данных за 30 минут онлайн и ответим на вопросы. Пришлите выгрузку из 1С – покажем, как система разнесёт ваши операции.</p>
-      <div class="actions">
-        <a class="btn" href="https://t.me/ochirnn">Написать в Telegram</a>
-        <a class="btn btn-outline" href="mailto:on@r140.ru?subject=Финдикатор: демонстрация">Написать на почту</a>
+    <div class="demo-box trial-grid">
+      <div id="trial" class="trial">
+        <h2>Попробовать 14 дней бесплатно</h2>
+        <p>Оставьте заявку – пришлём на почту ссылку на шаблон Финдикатора и пробный ключ. Работают все функции, включая загрузку из 1С и автоматическую разноску.</p>
+        <form id="trialForm" class="trial-form" novalidate>
+          <label>Как к вам обращаться<input name="name" autocomplete="name" maxlength="80" required></label>
+          <label>Почта Google-аккаунта<input name="email" type="email" autocomplete="email" maxlength="120" required placeholder="name@gmail.com"><span class="hint">На неё откроем доступ к шаблону</span></label>
+          <label>Телефон или Telegram<input name="contact" autocomplete="tel" maxlength="80" required></label>
+          <label>Компания<input name="company" autocomplete="organization" maxlength="120"></label>
+          <label>Сколько юрлиц<select name="firms"><option value="1">1</option><option value="2–3">2–3</option><option value="4–5">4–5</option><option value="больше 5">больше 5</option></select></label>
+          <label class="wide">Комментарий<textarea name="comment" rows="2" maxlength="500" placeholder="Например, какая у вас 1С"></textarea></label>
+          <label class="hp" aria-hidden="true">Сайт<input name="website" tabindex="-1" autocomplete="off"></label>
+          <label class="check wide"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных по <a href="/privacy.html" target="_blank">политике конфиденциальности</a></span></label>
+          <div class="wide"><button class="btn" type="submit">Получить пробный доступ</button> <span class="trial-msg" id="trialMsg" role="status"></span></div>
+        </form>
+        <div class="trial-done" id="trialDone" hidden>
+          <h3>Заявка отправлена</h3>
+          <p>В течение рабочего дня пришлём на <b id="trialEmail"></b> ссылку на шаблон и пробный ключ. Если письма нет – проверьте «Спам» или напишите в Telegram <a href="https://t.me/ochirnn">@ochirnn</a>.</p>
+        </div>
       </div>
-      <p class="small">Telegram: @ochirnn · Почта: on@r140.ru</p>
+      <div class="demo-side">
+        <h3>Сначала посмотреть вместе?</h3>
+        <p>Покажем Финдикатор на демо-данных за 30 минут онлайн и ответим на вопросы. Пришлите выгрузку из 1С – покажем, как система разнесёт ваши операции.</p>
+        <div class="actions">
+          <a class="btn btn-outline" href="https://t.me/ochirnn">Написать в Telegram</a>
+          <a class="btn btn-outline" href="mailto:on@r140.ru?subject=Финдикатор: демонстрация">Написать на почту</a>
+        </div>
+        <p class="small">Telegram: @ochirnn · Почта: on@r140.ru</p>
+      </div>
     </div>
   </div>
 </section>
@@ -251,6 +272,41 @@
   document.querySelectorAll('figure.shot img').forEach(function (img) {
     var hide = function () { img.closest('figure').hidden = true; };
     if (img.complete && !img.naturalWidth) hide(); else img.addEventListener('error', hide);
+  });
+  // Видео: плеер Rutube загружается только по щелчку (до щелчка — картинка, без cookie сторонних сайтов)
+  document.querySelectorAll('.video-facade').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = b.getAttribute('data-src');
+      f.allow = 'clipboard-write; autoplay; fullscreen';
+      f.allowFullscreen = true;
+      f.title = b.getAttribute('aria-label') || 'Видео';
+      b.replaceWith(f);
+    });
+  });
+  // Заявка на пробу 14 дней: отправляется на сервер Финдикатора (адрес — в /api.json), он пишет её в «Заявки» и в Telegram
+  var tf = document.getElementById('trialForm');
+  if (tf) tf.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = document.getElementById('trialMsg'), btn = tf.querySelector('button[type=submit]');
+    var v = function (n) { return tf.elements[n].value.trim(); };
+    var err = !v('name') ? 'Укажите, как к вам обращаться.' :
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email')) ? 'Проверьте адрес почты.' :
+      !v('contact') ? 'Укажите телефон или Telegram.' :
+      !tf.elements.consent.checked ? 'Отметьте согласие на обработку данных.' : '';
+    if (err) { msg.textContent = err; msg.className = 'trial-msg bad'; return; }
+    var data = { name: v('name'), email: v('email'), contact: v('contact'), company: v('company'), firms: v('firms'),
+      comment: v('comment'), website: v('website'), consent: true };
+    btn.disabled = true; msg.textContent = 'Отправляем…'; msg.className = 'trial-msg';
+    var fail = function (t) { btn.disabled = false; msg.textContent = t || 'Не получилось отправить. Напишите, пожалуйста, в Telegram @ochirnn.'; msg.className = 'trial-msg bad'; };
+    fetch('/api.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (api) {
+      return fetch(api.server, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ command: 'trial.request', data: data }) });
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      if (!res.ok) return fail(res.code === 'input' ? res.error : '');
+      document.getElementById('trialEmail').textContent = data.email;
+      tf.hidden = true; document.getElementById('trialDone').hidden = false;
+    }).catch(function () { fail(); });
   });
 })();
 </script>

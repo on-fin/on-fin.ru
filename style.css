@@ -242,6 +242,40 @@ details p { margin: 8px 0 0; color: var(--muted); }
 .demo-box .btn-outline { background: transparent; color: var(--blue); }
 .demo-box .btn-outline:hover { background: #fff; }
 
+/* ===== Заявка на пробу ===== */
+.trial-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; }
+.trial > p { margin-top: 0; }
+.trial-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+.trial-form label { display: flex; flex-direction: column; font-size: 15px; font-weight: 600; color: var(--blue-dark); gap: 4px; }
+.trial-form .wide { grid-column: 1 / -1; }
+.trial-form input, .trial-form select, .trial-form textarea { font: inherit; font-size: 16px; font-weight: 400; color: var(--text);
+  border: 1px solid #c5d0e0; border-radius: 8px; padding: 9px 12px; background: #fff; width: 100%; }
+.trial-form input:focus, .trial-form select:focus, .trial-form textarea:focus { outline: 2px solid var(--blue); outline-offset: 0; border-color: var(--blue); }
+.trial-form textarea { resize: vertical; }
+.trial-form .hint { text-align: left; font-size: 13px; font-weight: 400; color: var(--muted); }
+.trial-form .check { flex-direction: row; align-items: flex-start; gap: 10px; font-weight: 400; color: var(--text); }
+.trial-form .check input { width: 18px; height: 18px; margin: 3px 0 0; flex: none; }
+.trial-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.trial-form button { cursor: pointer; font: inherit; font-weight: 600; }
+.trial-form button:disabled { opacity: .6; cursor: wait; }
+.trial-msg { margin-left: 12px; font-size: 15px; color: var(--muted); }
+.trial-msg.bad { color: #b3261e; }
+.trial-done { background: #fff; border-radius: 10px; padding: 20px 22px; }
+.trial-done p { margin: 0; }
+.demo-side { border-left: 1px solid #c9d6ec; padding-left: 32px; }
+.demo-side .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+/* ===== Видео ===== */
+.video-box { max-width: 860px; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: var(--blue-dark); box-shadow: 0 8px 28px rgba(18,48,95,.18); }
+.video-box iframe { width: 100%; height: 100%; border: 0; display: block; }
+.video-facade { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: var(--blue-dark); }
+.video-facade img { width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: .55; display: block; }
+.video-play { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,.3); transition: transform .15s; }
+.video-play::after { content: ""; position: absolute; left: 34px; top: 26px; border-style: solid; border-width: 16px 0 16px 26px; border-color: transparent transparent transparent var(--blue); }
+.video-facade:hover .video-play { transform: scale(1.08); }
+.video-links { margin-top: 12px; }
+
 /* ===== Подвал ===== */
 footer { background: #f4f6fa; color: var(--muted); font-size: 14px; padding: 36px 0 24px; }
 footer a { color: var(--muted); text-decoration: none; }
@@ -281,6 +315,8 @@ footer a:hover { color: var(--blue); text-decoration: underline; }
   .dd-all { border-top-color: rgba(255,255,255,.15); }
   .btn-head { margin: 16px 0 0; text-align: center; }
   .foot { grid-template-columns: 1fr 1fr; }
+  .trial-grid { grid-template-columns: 1fr; }
+  .demo-side { border-left: 0; border-top: 1px solid #c9d6ec; padding: 24px 0 0; }
 }
 @media (max-width: 600px) {
   section, [id] { scroll-margin-top: 72px; }
@@ -295,4 +331,9 @@ footer a:hover { color: var(--blue); text-decoration: underline; }
   table.benefits td:first-child { width: 40%; }
   .to-top { right: 14px; bottom: 14px; width: 42px; height: 42px; }
   .foot { grid-template-columns: 1fr; }
+  .trial-form { grid-template-columns: 1fr; }
+  .demo-box { padding: 22px 16px; }
+  .trial-msg { display: block; margin: 8px 0 0; }
+  .video-play { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+  .video-play::after { left: 26px; top: 20px; border-width: 12px 0 12px 20px; }
 }
