@@ -337,3 +337,6 @@ footer a:hover { color: var(--blue); text-decoration: underline; }
   .video-play { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
   .video-play::after { left: 26px; top: 20px; border-width: 12px 0 12px 20px; }
 }
+.tariff-cards { max-width: 340px; }
+.tariff-cards .card { text-align: center; }
+.tariff-cards .plan-sum { margin: 4px 0; }
