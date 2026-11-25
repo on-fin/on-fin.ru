@@ -369,3 +369,13 @@ a.card-link h3 { margin-top: 0; color: var(--blue-dark); }
   .author { grid-template-columns: 1fr; gap: 14px; }
   .author img { width: 120px; height: 120px; }
 }
+/* ===== ИИ (25.11.2026) ===== */
+.ai-grid { display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: start; }
+.phone-shot { margin: 0; }
+.phone-shot img { width: 100%; max-width: 300px; border: 0; box-shadow: none; display: block; margin: 0 auto; }
+.tiles-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 860px) {
+  .ai-grid { grid-template-columns: 1fr; }
+  .phone-shot img { max-width: 260px; }
+}
+@media (max-width: 560px) { .tiles-2 { grid-template-columns: 1fr; } }
