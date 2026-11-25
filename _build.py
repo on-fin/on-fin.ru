@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, '_src')
 PAGES = os.path.join(SRC, 'pages')
 INSTRUCTION_MD = os.path.join(os.path.dirname(ROOT), 'Инструкция по настройке и работе.md')
-CSS_VERSION = '13'
+CSS_VERSION = '14'
 SITE = 'https://findikator.ru'
 
 

@@ -63,6 +63,16 @@
           <a href="/resheniya/gruppe-kompaniy.html">Группе компаний</a>
         </div>
       </div>
+      <div class="dd">
+        <button type="button" class="dd-btn" aria-expanded="false">Услуги</button>
+        <div class="dd-panel">
+          <a href="/ceny.html#vnedrenie">Система под ключ за 5 дней</a>
+          <a href="/uslugi/soprovozhdenie.html">Сопровождение учёта</a>
+          <a href="/uslugi/findirektor.html">Финансовый директор на аутсорсе</a>
+          <a href="/vstrecha.html">Бесплатный созвон с финдиректором</a>
+          <a href="/partneram.html">Партнёрам</a>
+        </div>
+      </div>
       <a class="menu-link" href="/ceny.html">Цены</a>
       <div class="dd">
         <button type="button" class="dd-btn" aria-expanded="false">Полезное</button>
@@ -75,7 +85,7 @@
           <a href="/poleznoe/pravovaya.html">Правовая информация</a>
         </div>
       </div>
-      <a class="btn btn-head" href="#trial">Попробовать бесплатно</a>
+      <a class="btn btn-head" href="#zapis">Бесплатный созвон</a>
     </nav>
   </div>
 </header>
@@ -86,31 +96,33 @@
 <section id="demo" class="demo-section">
   <div class="wrap">
     <div class="demo-box trial-grid">
-      <div id="trial" class="trial">
-        <h2>Попробовать 14 дней бесплатно</h2>
-        <p>Оставьте заявку – пришлём на почту ссылку на шаблон Финдикатора и пробный ключ. Работают все функции, включая загрузку из 1С и автоматическую разноску.</p>
+      <div id="zapis" class="trial">
+        <span id="trial"></span>
+        <h2>Бесплатный созвон с финансовым директором</h2>
+        <p>30–40 минут онлайн. Разберём, что происходит с деньгами и прибылью в вашей компании, каких отчётов не хватает и с чего начать. Покажем Финдикатор. Без обязательств: план шагов останется у вас, даже если дальше не будем работать вместе.</p>
         <form id="trialForm" class="trial-form" novalidate>
           <label>Как к вам обращаться<input name="name" autocomplete="name" maxlength="80" required></label>
-          <label>Почта Google-аккаунта<input name="email" type="email" autocomplete="email" maxlength="120" required placeholder="name@gmail.com"><span class="hint">На неё откроем доступ к шаблону</span></label>
+          <label>Почта<input name="email" type="email" autocomplete="email" maxlength="120" required placeholder="name@mail.ru"><span class="hint">Пришлём ссылку на созвон</span></label>
           <label>Телефон или Telegram<input name="contact" autocomplete="tel" maxlength="80" required></label>
           <label>Компания<input name="company" autocomplete="organization" maxlength="120"></label>
           <label>Сколько юрлиц<select name="firms"><option value="1">1</option><option value="2–3">2–3</option><option value="4–5">4–5</option><option value="больше 5">больше 5</option></select></label>
-          <label class="wide">Комментарий<textarea name="comment" rows="2" maxlength="500" placeholder="Например, какая у вас 1С"></textarea></label>
+          <label>Что интересует<select name="topic"><option>Пока не знаю, нужен совет</option><option>Система под ключ</option><option>Сопровождение учёта</option><option>Финдиректор на аутсорсе</option><option>Партнёрство</option></select></label>
+          <label class="wide">Что беспокоит в финансах<textarea name="comment" rows="2" maxlength="500" placeholder="Например: прибыль есть, а денег нет"></textarea></label>
           <label class="hp" aria-hidden="true">Сайт<input name="website" tabindex="-1" autocomplete="off"></label>
           <label class="check wide"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных по <a href="/privacy.html" target="_blank">политике конфиденциальности</a></span></label>
-          <div class="wide"><button class="btn" type="submit">Получить пробный доступ</button> <span class="trial-msg" id="trialMsg" role="status"></span></div>
+          <div class="wide"><button class="btn" type="submit">Записаться на созвон</button> <span class="trial-msg" id="trialMsg" role="status"></span></div>
         </form>
         <div class="trial-done" id="trialDone" hidden>
           <h3>Заявка отправлена</h3>
-          <p>В течение рабочего дня пришлём на <b id="trialEmail"></b> ссылку на шаблон и пробный ключ. Если письма нет – проверьте «Спам» или напишите в Telegram <a href="https://t.me/ochirnn">@ochirnn</a>.</p>
+          <p>В течение рабочего дня свяжемся с вами и договоримся о времени. Ссылку на созвон пришлём на <b id="trialEmail"></b>. Если не дождётесь – напишите в Telegram <a href="https://t.me/ochirnn">@ochirnn</a>.</p>
         </div>
       </div>
       <div class="demo-side">
-        <h3>Сначала посмотреть вместе?</h3>
-        <p>Покажем Финдикатор на демо-данных за 30 минут онлайн и ответим на вопросы. Пришлите выгрузку из 1С – покажем, как система разнесёт ваши операции.</p>
+        <h3>Созвон проводит финансовый директор</h3>
+        <p>С опытом более 20 лет, автор Финдикатора. Не менеджер по продажам. <a href="/poleznoe/o-nas.html">О нас →</a></p>
         <div class="actions">
           <a class="btn btn-outline" href="https://t.me/ochirnn">Написать в Telegram</a>
-          <a class="btn btn-outline" href="mailto:on@r140.ru?subject=Финдикатор: демонстрация">Написать на почту</a>
+          <a class="btn btn-outline" href="mailto:on@r140.ru?subject=Финдикатор: созвон">Написать на почту</a>
         </div>
         <p class="small">Telegram: @ochirnn · Почта: on@r140.ru</p>
       </div>
@@ -123,7 +135,7 @@
   <div class="wrap foot">
     <div class="foot-col">
       <a class="logo logo-dark" href="/"><img src="/img/findikator-logo-short.svg" alt="Финдикатор" height="28"></a>
-      <p>Управленческий учёт для компаний на 1С в Google Таблицах. Разовая покупка, без обязательной подписки.</p>
+      <p>Управленческий учёт для компаний на 1С: система под ключ за 5 дней, сопровождение и финансовый директор на аутсорсе.</p>
     </div>
     <div class="foot-col">
       <div class="foot-title">Возможности</div>
@@ -140,6 +152,9 @@
       <a href="/resheniya/finansistu.html">Финансисту</a>
       <a href="/resheniya/gruppe-kompaniy.html">Группе компаний</a>
       <a href="/ceny.html">Цены</a>
+      <a href="/uslugi/soprovozhdenie.html">Сопровождение</a>
+      <a href="/uslugi/findirektor.html">Финдиректор на аутсорсе</a>
+      <a href="/partneram.html">Партнёрам</a>
     </div>
     <div class="foot-col">
       <div class="foot-title">Полезное</div>
@@ -209,7 +224,8 @@
       b.replaceWith(f);
     });
   });
-  // Заявка на пробу 14 дней: отправляется на сервер Финдикатора (адрес — в /api.json), он пишет её в «Заявки» и в Telegram
+  // Заявка на бесплатный созвон (до 24.11.2026 — на пробу 14 дней): отправляется на сервер Финдикатора (адрес — в /api.json),
+  // он пишет её в «Заявки» и в Telegram. Тема заявки идёт в начало комментария: сервер отдельного поля для неё не знает.
   var tf = document.getElementById('trialForm'), t0 = Date.now();
   if (tf) tf.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -221,7 +237,7 @@
       !tf.elements.consent.checked ? 'Отметьте согласие на обработку данных.' : '';
     if (err) { msg.textContent = err; msg.className = 'trial-msg bad'; return; }
     var data = { name: v('name'), email: v('email'), contact: v('contact'), company: v('company'), firms: v('firms'),
-      comment: v('comment'), website: v('website'), consent: true, t: Math.round((Date.now() - t0) / 1000) };
+      comment: ('[Созвон: ' + v('topic') + '] ' + v('comment')).trim(), website: v('website'), consent: true, t: Math.round((Date.now() - t0) / 1000) };
     btn.disabled = true; msg.textContent = 'Отправляем…'; msg.className = 'trial-msg';
     var fail = function (t) { btn.disabled = false; msg.textContent = t || 'Не получилось отправить. Напишите, пожалуйста, в Telegram @ochirnn.'; msg.className = 'trial-msg bad'; };
     fetch('/api.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (api) {

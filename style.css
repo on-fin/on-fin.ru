@@ -340,3 +340,32 @@ footer a:hover { color: var(--blue); text-decoration: underline; }
 .tariff-cards { max-width: 340px; }
 .tariff-cards .card { text-align: center; }
 .tariff-cards .plan-sum { margin: 4px 0; }
+
+/* ===== Услуги, калькулятор, автор (24.11.2026) ===== */
+.per { font-size: .5em; font-weight: 600; opacity: .75; margin-left: 2px; }
+.mt-s { margin-top: 10px !important; }
+a.card-link { text-decoration: none; color: inherit; display: block; transition: border-color .15s, box-shadow .15s, transform .15s; }
+a.card-link:hover { border-color: var(--blue); box-shadow: 0 6px 20px rgba(18,48,95,.12); transform: translateY(-2px); }
+a.card-link h3 { margin-top: 0; color: var(--blue-dark); }
+.calc { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 26px; box-shadow: 0 4px 18px rgba(18,48,95,.08); }
+.calc-row { display: block; margin-bottom: 22px; }
+.calc-label { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; color: var(--muted); margin-bottom: 6px; }
+.calc-label b { color: var(--blue-dark); font-size: 18px; white-space: nowrap; }
+.calc input[type=range] { width: 100%; accent-color: var(--blue); height: 24px; cursor: pointer; }
+.calc-scale { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.calc-out { background: var(--blue-light); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+.calc-item { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; border-bottom: 1px solid #cfdbee; padding-bottom: 8px; }
+.calc-item span { font-size: 15px; color: var(--muted); }
+.calc-item b { font-size: 20px; color: var(--blue-dark); text-align: right; white-space: nowrap; }
+.calc-item em { grid-column: 1 / -1; font-style: normal; font-size: 13px; color: var(--muted); text-align: right; }
+.calc-out .btn { text-align: center; margin-top: 4px; }
+.calc-out .small { margin: 0; }
+.author { display: grid; grid-template-columns: 160px 1fr; gap: 28px; align-items: start; max-width: 900px; }
+.author img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 16px rgba(18,48,95,.18); border: 3px solid #fff; }
+.author h2 { margin-top: 0; }
+.side-photo { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 3px 12px rgba(18,48,95,.18); display: block; margin-bottom: 10px; }
+@media (max-width: 760px) {
+  .calc { grid-template-columns: 1fr; padding: 18px; }
+  .author { grid-template-columns: 1fr; gap: 14px; }
+  .author img { width: 120px; height: 120px; }
+}
