@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#12305f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Финдикатор">
+<title>Финдикатор на телефоне</title>
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Финдикатор на телефоне (25.11.2026): только просмотр, по сводке итогов таблицы (без операций, счетов и ИНН).
+     Вход: из Telegram-бота (кнопка «Финдикатор», подпись Telegram проверяет сервер) или по ссылке из таблицы
+     #t=<секрет> + ПИН-код один раз на телефоне. Сервер — «15 Телефон» в «Сервер (clasp)». Не в карте сайта. -->
+<style>
+  :root { --ink: #1c2430; --muted: #5b6676; --dk: #12305f; --mid: #1f4f9c; --soft: #e9f0fb; --card: #fff; --bg: #f3f6fb;
+    --line: #dde3ec; --good: #2a8a5b; --bad: #c8463a; --warn: #c98a12; --c2: #2a9d8f; --c5: #d9604f; --c1: #1f4f9c; }
+  [data-theme="dark"] { --ink: #e6ebf2; --muted: #a0aab8; --dk: #0b1a33; --mid: #6d9be6; --soft: #1b2638; --card: #151e2c; --bg: #0d131d;
+    --line: #2a3546; --good: #4fc28a; --bad: #ef7a6e; --warn: #e6b04a; --c1: #6d9be6; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.45 "Segoe UI", Roboto, Arial, sans-serif; }
+  header { background: var(--dk); color: #fff; padding: calc(12px + env(safe-area-inset-top)) 16px 12px; position: sticky; top: 0; z-index: 5; }
+  header .t { font-weight: 700; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  header .s { font-size: 13px; opacity: .8; }
+  main { padding: 12px 12px calc(84px + env(safe-area-inset-bottom)); max-width: 640px; margin: 0 auto; }
+  .card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(16,32,64,.08); }
+  .card h2 { font-size: 15px; margin: 0 0 8px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+  .big { font-size: 30px; font-weight: 700; line-height: 1.15; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row2 .card { margin-bottom: 0; }
+  .grid { margin-bottom: 12px; }
+  .k { font-size: 13px; color: var(--muted); }
+  .v { font-size: 20px; font-weight: 700; }
+  .up { color: var(--good); } .down { color: var(--bad); }
+  .warn { background: #fff4d6; color: #6b4a00; border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; font-size: 14px; }
+  [data-theme="dark"] .warn { background: #3a2f12; color: #f3d48a; }
+  .sig { padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .sig:first-of-type { border-top: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td { padding: 7px 0; border-top: 1px solid var(--line); vertical-align: top; }
+  tr:first-child td { border-top: 0; }
+  td.n { text-align: right; white-space: nowrap; padding-left: 10px; font-variant-numeric: tabular-nums; }
+  tr.tot td { font-weight: 700; }
+  tr.sec td { font-weight: 700; color: var(--mid); padding-top: 14px; }
+  td.ind { padding-left: 12px; }
+  .seg { display: flex; background: var(--soft); border-radius: 10px; padding: 3px; margin-bottom: 12px; overflow-x: auto; }
+  .seg button { flex: 1; border: 0; background: none; color: var(--ink); font-weight: 600; font-size: 14px; font-family: inherit; padding: 8px 6px;
+    border-radius: 8px; white-space: nowrap; }
+  .seg button.on { background: var(--card); color: var(--mid); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+  .months { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 12px; padding-bottom: 2px; }
+  .months button { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 16px; padding: 5px 12px;
+    font-size: 14px; font-family: inherit; white-space: nowrap; }
+  .months button.on { background: var(--mid); color: #fff; border-color: var(--mid); }
+  nav { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); display: flex;
+    padding-bottom: env(safe-area-inset-bottom); z-index: 5; }
+  nav[hidden] { display: none; }
+  nav button { flex: 1; border: 0; background: none; color: var(--muted); font-size: 12px; font-family: inherit; padding: 8px 0 9px; }
+  nav button b { display: block; font-size: 21px; line-height: 1.1; font-weight: 400; }
+  nav button.on { color: var(--mid); font-weight: 700; }
+  .btn { display: block; width: 100%; border: 0; border-radius: 12px; background: var(--mid); color: #fff; font-weight: 700; font-size: 17px;
+    font-family: inherit; padding: 14px; margin-top: 12px; }
+  .btn.ghost { background: var(--soft); color: var(--mid); }
+  .center { text-align: center; padding: 48px 12px; }
+  .pin { display: flex; justify-content: center; gap: 8px; margin: 18px 0 6px; }
+  .pin input { width: 100%; max-width: 260px; text-align: center; font-size: 30px; letter-spacing: 12px; padding: 10px; border-radius: 12px;
+    border: 2px solid var(--line); background: var(--card); color: var(--ink); font-family: inherit; }
+  .pin input:focus { outline: none; border-color: var(--mid); }
+  .err { color: var(--bad); min-height: 22px; font-size: 15px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; }
+  svg text { fill: var(--muted); font-size: 11px; font-family: inherit; }
+  .bar-h { height: 8px; border-radius: 4px; background: var(--mid); margin-top: 4px; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .scroll { overflow-x: auto; }
+  .scroll table td { white-space: nowrap; }
+  .foot { text-align: center; color: var(--muted); font-size: 13px; padding: 8px 0 4px; }
+  .foot a { color: var(--muted); }
+  .spin { width: 34px; height: 34px; border: 3px solid var(--soft); border-top-color: var(--mid); border-radius: 50%; margin: 0 auto 14px;
+    animation: r 0.9s linear infinite; }
+  @keyframes r { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<header><div class="t" id="title">Финдикатор</div><div class="s" id="sub">на телефоне</div></header>
+<main id="app"><div class="center"><div class="spin"></div>Загружаю…</div></main>
+<nav id="nav" hidden>
+  <button data-tab="home" class="on"><b>🏠</b>Главное</button>
+  <button data-tab="rep"><b>📊</b>Отчёты</button>
+  <button data-tab="cal"><b>🗓</b>Календарь</button>
+  <button data-tab="co"><b>🏢</b>Компании</button>
+</nav>
+<script>
+(function () {
+  'use strict';
+  var MONTHS = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+  var MONTHS_OF = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  var app = document.getElementById('app'), nav = document.getElementById('nav');
+  var LS_T = 'findikator.t', LS_D = 'findikator.dev';
+  var st = { mode: '', t: '', dev: '', init: '', res: null, tab: 'home', m: null, rep: 'opu', ytd: false };
+  var server = null;
+
+  // ---------- оформление ----------
+  function theme(dark) { document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light'); }
+  var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  theme(mq && mq.matches);
+
+  // ---------- числа ----------
+  function fmt(x) { var n = Math.round(Number(x) || 0); return (n < 0 ? '−' : '') + String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+  function rub(x) {
+    var n = Number(x) || 0, a = Math.abs(n);
+    if (a >= 1e9) return (n < 0 ? '−' : '') + (Math.round(a / 1e7) / 100).toString().replace('.', ',') + ' млрд ₽';
+    if (a >= 1e6) return (n < 0 ? '−' : '') + (Math.round(a / 1e4) / 100).toString().replace('.', ',') + ' млн ₽';
+    return fmt(n) + ' ₽';
+  }
+  function signed(x) { return (Math.round(x) > 0 ? '+' : '') + rub(x); }
+  function pct(a, b) { return b ? (Math.round(a / b * 1000) / 10).toString().replace('.', ',') + '%' : '—'; }
+  function sum(a, to, from) { var s = 0; for (var i = from || 0; i <= to; i++) s += Number(a && a[i]) || 0; return s; }
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function date(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || '')); return m ? m[3] + '.' + m[2] + '.' + m[1] : '—'; }
+  function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+  function cls(x) { return Math.round(x) > 0 ? 'up' : Math.round(x) < 0 ? 'down' : ''; }
+
+  // ---------- сервер ----------
+  function call(command, data) {
+    var go = server ? Promise.resolve(server) : fetch('/api.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); }).then(function (api) { server = api.server; return server; });
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 45000) : 0;   // сервер молчит дольше 45 с — «нет связи»
+    return go.then(function (url) {
+      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ command: command, data: data }), signal: ctl ? ctl.signal : undefined });
+    }).then(function (r) { clearTimeout(timer); return r.json(); });
+  }
+  function load(cmd, data) {
+    if (!st.res) app.innerHTML = '<div class="center"><div class="spin"></div>Загружаю цифры…</div>';
+    return call(cmd, data).then(function (res) {
+      if (res.ok) {
+        if (res.dev) { st.dev = res.dev; try { localStorage.setItem(LS_D, res.dev); } catch (e) { /* без памяти — ПИН каждый раз */ } }
+        st.res = res;
+        if (st.m == null || st.m > res.snap.last) st.m = res.snap.last;
+        nav.hidden = false;
+        render();
+        return res;
+      }
+      if (res.code === 'pin') { if (cmd === 'phone.data') { st.dev = ''; try { localStorage.removeItem(LS_D); } catch (e) { /* */ } } pinScreen(cmd === 'phone.open' ? res.error : ''); return res; }
+      if (res.code === 'gone' || res.code === 'blocked') { forget(); }
+      message('Не получилось открыть', res.error || 'Ошибка сервера.');
+      return res;
+    }).catch(function () {
+      message('Нет связи с сервером', 'Проверьте интернет и попробуйте ещё раз.', true);
+    });
+  }
+  function forget() { try { localStorage.removeItem(LS_T); localStorage.removeItem(LS_D); } catch (e) { /* */ } st.t = ''; st.dev = ''; }
+
+  // ---------- экраны входа ----------
+  function message(title, text, retry) {
+    nav.hidden = true;
+    app.innerHTML = '<div class="card center"><div style="font-size:40px">📱</div><h3>' + esc(title) + '</h3><p>' + esc(text) + '</p>' +
+      (retry ? '<button class="btn" id="again">Попробовать ещё раз</button>' : '') + '</div>' + footer();
+    if (retry) document.getElementById('again').onclick = start;
+  }
+  function pinScreen(err) {
+    nav.hidden = true;
+    app.innerHTML = '<div class="card center" style="padding-top:28px"><div style="font-size:40px">🔐</div>' +
+      '<h3 style="margin:8px 0 4px">Введите ПИН-код</h3><div class="muted">6 цифр — их показала таблица вместе со ссылкой.<br>' +
+      'На этом телефоне ПИН спросим один раз.</div>' +
+      '<form id="pf"><div class="pin"><input id="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" aria-label="ПИН-код"></div>' +
+      '<div class="err" id="perr">' + esc(err || '') + '</div><button class="btn" type="submit">Открыть</button></form></div>' + footer();
+    var inp = document.getElementById('pin');
+    inp.focus();
+    inp.oninput = function () { inp.value = inp.value.replace(/\D/g, '').slice(0, 6); if (inp.value.length === 6) submit(); };
+    document.getElementById('pf').onsubmit = function (e) { e.preventDefault(); submit(); };
+    function submit() {
+      if (inp.value.length !== 6) { document.getElementById('perr').textContent = 'Нужно 6 цифр.'; return; }
+      inp.disabled = true;
+      document.getElementById('perr').textContent = 'Проверяю…';
+      load('phone.open', { t: st.t, pin: inp.value });
+    }
+  }
+  function footer() {
+    return '<div class="foot">Финдикатор — управленческий учёт для компаний на 1С · <a href="/" target="_blank" rel="noopener">findikator.ru</a></div>';
+  }
+
+  // ---------- графики (SVG без библиотек) ----------
+  function bars(labels, series, h) {
+    h = h || 180;
+    var w = 340, pad = 30, n = labels.length, k = series.length;
+    var all = []; series.forEach(function (s) { all = all.concat(s.v); });
+    var max = Math.max.apply(null, all.concat([0])), min = Math.min.apply(null, all.concat([0]));
+    if (max === min) max = min + 1;
+    var y = function (v) { return 8 + (max - v) / (max - min) * (h - 30); };
+    var gw = (w - pad) / n, bw = Math.max(2, Math.min(14, (gw - 4) / k));
+    var out = '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" role="img">';
+    out += '<line x1="' + pad + '" x2="' + w + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="var(--line)"/>';
+    out += '<text x="0" y="' + (y(max) + 4) + '">' + short(max) + '</text>';
+    if (min < 0) out += '<text x="0" y="' + (y(min) + 4) + '">' + short(min) + '</text>';
+    labels.forEach(function (l, i) {
+      var x0 = pad + i * gw + (gw - bw * k) / 2;
+      series.forEach(function (s, j) {
+        var v = s.v[i] || 0, a = y(Math.max(v, 0)), b = y(Math.min(v, 0));
+        out += '<rect x="' + (x0 + j * bw) + '" y="' + a + '" width="' + (bw - 1) + '" height="' + Math.max(1, b - a) + '" rx="1.5" fill="' + s.c + '"/>';
+      });
+      out += '<text x="' + (pad + i * gw + gw / 2) + '" y="' + (h - 6) + '" text-anchor="middle">' + esc(l) + '</text>';
+    });
+    out += '</svg><div class="legend">' + series.map(function (s) { return '<span><i style="background:' + s.c + '"></i>' + esc(s.name) + '</span>'; }).join('') + '</div>';
+    return out;
+  }
+  function line(labels, v, limit, h) {
+    h = h || 170;
+    var w = 340, pad = 30, n = labels.length;
+    var all = v.concat([limit || 0, 0]);
+    var max = Math.max.apply(null, all), min = Math.min.apply(null, all);
+    if (max === min) max = min + 1;
+    var y = function (x) { return 10 + (max - x) / (max - min) * (h - 32); };
+    var xs = function (i) { return pad + (n === 1 ? (w - pad) / 2 : i * (w - pad - 10) / (n - 1)); };
+    var out = '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" role="img">';
+    out += '<line x1="' + pad + '" x2="' + w + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="var(--line)"/>';
+    if (limit) out += '<line x1="' + pad + '" x2="' + w + '" y1="' + y(limit) + '" y2="' + y(limit) + '" stroke="var(--c5)" stroke-dasharray="5 4"/>';
+    out += '<text x="0" y="' + (y(max) + 4) + '">' + short(max) + '</text>';
+    if (min < 0) out += '<text x="0" y="' + (y(min) + 4) + '">' + short(min) + '</text>';
+    out += '<polyline fill="none" stroke="var(--c1)" stroke-width="2.5" points="' + v.map(function (x, i) { return xs(i) + ',' + y(x); }).join(' ') + '"/>';
+    v.forEach(function (x, i) {
+      out += '<circle cx="' + xs(i) + '" cy="' + y(x) + '" r="3.5" fill="' + (x < 0 ? 'var(--bad)' : x < (limit || 0) ? 'var(--warn)' : 'var(--c1)') + '"/>';
+      if (n <= 8 || i % 2 === 0) out += '<text x="' + xs(i) + '" y="' + (h - 6) + '" text-anchor="middle">' + esc(String(labels[i]).slice(0, 5)) + '</text>';
+    });
+    return out + '</svg><div class="legend"><span><i style="background:var(--c1)"></i>Остаток на конец недели</span>' +
+      (limit ? '<span><i style="background:var(--c5)"></i>Порог ' + esc(rub(limit)) + '</span>' : '') + '</div>';
+  }
+  function short(x) { var a = Math.abs(x); return (x < 0 ? '−' : '') + (a >= 1e6 ? (Math.round(a / 1e5) / 10).toString().replace('.', ',') + 'м' : a >= 1e3 ? Math.round(a / 1e3) + 'т' : Math.round(a)); }
+
+  // ---------- данные ----------
+  function debts(s, i) {
+    var bal = s.bal || [], f = function (re) { return bal.filter(function (r) { return re.test(String(r.l)); })[0] || null; };
+    var dz = f(/дебитор/i), kz = f(/кредитор/i);
+    var p = function (r) { return r ? { now: r.v[i + 1] || 0, prev: r.v[i] || 0 } : null; };
+    return { dz: p(dz), kz: p(kz) };
+  }
+  function calEnd(s) { var c = s.cal || {}; return (c.rows || []).filter(function (r) { return /^остаток на конец/i.test(r.l); })[0] || null; }
+  function norm(x) { return String(x || '').toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ').trim(); }
+
+  // ---------- вкладки ----------
+  function render() {
+    var s = st.res.snap;
+    document.getElementById('title').textContent = s.title || 'Финдикатор';
+    document.getElementById('sub').textContent = (st.res.fresh && st.res.fresh.line || '').replace(/^🗓\s*/, '') + (st.res.demo ? ' · демо' : '');
+    Array.prototype.forEach.call(nav.querySelectorAll('button'), function (b) { b.classList.toggle('on', b.getAttribute('data-tab') === st.tab); });
+    var html = st.res.fresh && st.res.fresh.stale ? '<div class="warn">⚠️ ' + esc(cap(st.res.fresh.warn)) + ' — цифры могут быть устаревшими.</div>' : '';
+    html += ({ home: home, rep: reports, cal: calendar, co: companies })[st.tab](s);
+    html += '<button class="btn ghost" id="refresh">↻ Обновить</button>';
+    if (st.mode === 'link') html += '<div class="foot">Ссылка действует до ' + esc(st.res.until || '—') + ' · <a href="#" id="logout">выйти на этом телефоне</a></div>';
+    html += footer();
+    app.innerHTML = html;
+    var r = document.getElementById('refresh');
+    if (r) r.onclick = function () { r.textContent = 'Обновляю…'; refresh(); };
+    var lo = document.getElementById('logout');
+    if (lo) lo.onclick = function (e) {
+      e.preventDefault();
+      if (!confirm('Выйти на этом телефоне? Чтобы зайти снова, понадобятся ссылка и ПИН-код.')) return;
+      call('phone.logout', { t: st.t, dev: st.dev }).catch(function () { /* */ });
+      forget(); st.res = null;
+      message('Вы вышли', 'Чтобы снова открыть Финдикатор на этом телефоне, откройте ссылку из таблицы и введите ПИН-код.');
+    };
+    Array.prototype.forEach.call(app.querySelectorAll('[data-m]'), function (b) { b.onclick = function () { st.m = +b.getAttribute('data-m'); render(); }; });
+    Array.prototype.forEach.call(app.querySelectorAll('[data-rep]'), function (b) { b.onclick = function () { st.rep = b.getAttribute('data-rep'); render(); }; });
+    Array.prototype.forEach.call(app.querySelectorAll('[data-ytd]'), function (b) { b.onclick = function () { st.ytd = b.getAttribute('data-ytd') === '1'; render(); }; });
+    var on = app.querySelector('.months .on');
+    if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
+  }
+
+  function home(s) {
+    var g = s.g, L = s.last, m = MONTHS[L], ytd = function (a) { return sum(a, L); };
+    var h = '<div class="card"><h2>Деньги на ' + esc(date(s.lastPay)) + '</h2><div class="big">' + rub(g.end[L]) + '</div>' +
+      (L > 0 ? '<div class="' + cls(g.end[L] - g.end[L - 1]) + '">' + signed(g.end[L] - g.end[L - 1]) + ' за ' + m + '</div>' : '') + '</div>';
+    h += '<div class="row2 grid"><div class="card"><div class="k">Выручка, ' + m + '</div><div class="v">' + rub(g.rev[L]) + '</div>' +
+      (L > 0 ? '<div class="k ' + cls(g.rev[L] - g.rev[L - 1]) + '">' + signed(g.rev[L] - g.rev[L - 1]) + '</div>' : '') + '</div>' +
+      '<div class="card"><div class="k">Прибыль, ' + m + '</div><div class="v ' + (g.net[L] < 0 ? 'down' : '') + '">' + rub(g.net[L]) + '</div>' +
+      '<div class="k">рентабельность ' + pct(g.net[L], g.rev[L]) + '</div></div></div>';
+    var lyTxt = '';
+    if (s.ly && s.ly.rev && s.ly.rev.some(Boolean)) {
+      var lr = ytd(s.ly.rev);
+      lyTxt = '<div class="k">к ' + (s.year - 1) + ': ' + '<span class="' + cls(ytd(g.rev) - lr) + '">' + (lr ? (ytd(g.rev) >= lr ? '+' : '') + pct(ytd(g.rev) - lr, lr) : '—') + '</span></div>';
+    }
+    h += '<div class="row2 grid"><div class="card"><div class="k">Выручка с начала года</div><div class="v">' + rub(ytd(g.rev)) + '</div>' + lyTxt + '</div>' +
+      '<div class="card"><div class="k">Прибыль с начала года</div><div class="v ' + (ytd(g.net) < 0 ? 'down' : '') + '">' + rub(ytd(g.net)) + '</div>' +
+      '<div class="k">рентабельность ' + pct(ytd(g.net), ytd(g.rev)) + '</div></div></div>';
+    var d = debts(s, L);
+    if (d.dz || d.kz) h += '<div class="row2 grid"><div class="card"><div class="k">Нам должны</div><div class="v">' + (d.dz ? rub(d.dz.now) : '—') + '</div>' +
+      (d.dz ? '<div class="k">' + signed(d.dz.now - d.dz.prev) + ' за месяц</div>' : '') + '</div>' +
+      '<div class="card"><div class="k">Мы должны</div><div class="v">' + (d.kz ? rub(Math.abs(d.kz.now)) : '—') + '</div>' +
+      (d.kz ? '<div class="k">' + signed(Math.abs(d.kz.now) - Math.abs(d.kz.prev)) + ' за месяц</div>' : '') + '</div></div>';
+    // календарь
+    var e = calEnd(s), c = s.cal || {};
+    if (e) {
+      var n = Math.min(5, e.v.length), mi = 0;
+      for (var i = 1; i < n; i++) if (e.v[i] < e.v[mi]) mi = i;
+      var min = e.v[mi], wk = (c.weeks || [])[mi] || '';
+      h += '<div class="card"><h2>Прогноз на месяц</h2><div>' + (min < 0 ? '🔴 Кассовый разрыв: неделя ' + esc(wk) + ', остаток ' + rub(min) :
+        min < (c.minCash || 0) ? '🟠 Остаток опустится до ' + rub(min) + ' (неделя ' + esc(wk) + ') — ниже порога ' + rub(c.minCash) :
+        '🟢 Денег хватает: минимум ' + rub(min) + ' (неделя ' + esc(wk) + ')') + '</div></div>';
+    }
+    if ((st.res.signals || []).length) h += '<div class="card"><h2>Сигналы</h2>' + st.res.signals.map(function (x) { return '<div class="sig">' + esc(x) + '</div>'; }).join('') + '</div>';
+    var lab = [], i2;
+    for (i2 = 0; i2 <= L; i2++) lab.push(MONTHS[i2].slice(0, 3));
+    h += '<div class="card"><h2>Доходы, расходы и прибыль</h2>' + bars(lab, [
+      { name: 'Доходы', c: 'var(--c2)', v: lab.map(function (_, i) { return g.rev[i] || 0; }) },
+      { name: 'Расходы', c: 'var(--c5)', v: lab.map(function (_, i) { return Math.abs(g.costs[i] || 0); }) },
+      { name: 'Прибыль', c: 'var(--c1)', v: lab.map(function (_, i) { return g.net[i] || 0; }) }]) + '</div>';
+    var acc = (s.accounts || []).filter(function (a) { return Math.round(a.v[L] || 0); });
+    if (acc.length) h += '<div class="card"><h2>Деньги по счетам</h2><table>' + acc.map(function (a) {
+      return '<tr><td>' + esc(a.name) + '</td><td class="n">' + fmt(a.v[L]) + '</td></tr>'; }).join('') +
+      '<tr class="tot"><td>Итого</td><td class="n">' + fmt(g.end[L]) + '</td></tr></table></div>';
+    if ((s.clients || []).length) {
+      var cl = s.clients.map(function (x) { return { n: x.name, v: ytd(x.v) }; }).sort(function (a, b) { return b.v - a.v; }).slice(0, 7);
+      var top = cl[0] ? cl[0].v || 1 : 1;
+      h += '<div class="card"><h2>Крупные клиенты с начала года</h2>' + cl.map(function (x) {
+        return '<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;gap:8px"><span>' + esc(x.n) + '</span><b>' + rub(x.v) + '</b></div>' +
+          '<div class="bar-h" style="width:' + Math.max(2, x.v / top * 100) + '%"></div></div>'; }).join('') + '</div>';
+    }
+    return h;
+  }
+
+  function monthPicker(L) {
+    var b = '';
+    for (var i = 0; i <= L; i++) b += '<button data-m="' + i + '"' + (i === st.m ? ' class="on"' : '') + '>' + cap(MONTHS[i]) + '</button>';
+    return '<div class="months">' + b + '</div>';
+  }
+
+  function reports(s) {
+    var L = s.last, m = st.m;
+    var tabs = [['opu', 'ОПУ'], ['odds', 'ОДДС'], ['bdr', 'БДР'], ['bal', 'Баланс']];
+    var h = '<div class="seg">' + tabs.map(function (t) { return '<button data-rep="' + t[0] + '"' + (st.rep === t[0] ? ' class="on"' : '') + '>' + t[1] + '</button>'; }).join('') + '</div>';
+    h += monthPicker(L);
+    if (st.rep !== 'bal') h += '<div class="seg"><button data-ytd="0"' + (!st.ytd ? ' class="on"' : '') + '>' + cap(MONTHS[m]) + '</button>' +
+      '<button data-ytd="1"' + (st.ytd ? ' class="on"' : '') + '>Январь–' + MONTHS[m] + '</button></div>';
+    var val = function (v) { return st.ytd ? sum(v, m) : (v && v[m]) || 0; };
+    var rowsHtml = function (rows, withSec) {
+      var out = '', sec = '';
+      rows.forEach(function (r) {
+        var x = val(r.v);
+        if (!Math.round(x) && r.leaf) return;
+        if (withSec && r.s && r.s !== sec) { sec = r.s; out += '<tr class="sec"><td colspan="2">' + esc(sec) + '</td></tr>'; }
+        out += '<tr' + (r.leaf ? '' : ' class="tot"') + '><td' + (r.leaf ? ' class="ind"' : '') + '>' + esc(r.l) + '</td><td class="n">' + fmt(x) + '</td></tr>';
+      });
+      return out || '<tr><td class="muted">Нет данных за этот период</td></tr>';
+    };
+    if (st.rep === 'opu') {
+      h += '<div class="card"><h2>Отчёт о прибылях и убытках</h2><div class="muted" style="margin-bottom:6px">По начислению, ₽</div><table>' + rowsHtml(s.opu || [], false) + '</table></div>';
+      if (!st.ytd && m > 0) {
+        var dr = (s.opu || []).filter(function (r) { return r.leaf; }).map(function (r) {
+          return { l: r.l, e: ((r.v[m] || 0) - (r.v[m - 1] || 0)) * (r.k || 1) }; })
+          .filter(function (x) { return Math.round(x.e); }).sort(function (a, b) { return Math.abs(b.e) - Math.abs(a.e); }).slice(0, 5);
+        if (dr.length) h += '<div class="card"><h2>Что изменило прибыль к ' + MONTHS_OF[m - 1].replace(/я$/, 'ю').replace(/а$/, 'у') + '</h2><table>' +
+          '<tr class="tot"><td>Прибыль</td><td class="n ' + cls(s.g.net[m] - s.g.net[m - 1]) + '">' + signed(s.g.net[m] - s.g.net[m - 1]) + '</td></tr>' +
+          dr.map(function (x) { return '<tr><td class="ind">' + esc(x.l) + '</td><td class="n ' + cls(x.e) + '">' + signed(x.e) + '</td></tr>'; }).join('') + '</table></div>';
+      }
+    } else if (st.rep === 'odds') {
+      h += '<div class="card"><h2>Движение денег</h2><div class="muted" style="margin-bottom:6px">По оплате, ₽</div><table>' + rowsHtml(s.odds || [], true) + '</table></div>';
+    } else if (st.rep === 'bdr') {
+      var plan = {};
+      (s.bdr || []).forEach(function (r) { var k = norm(r.l); if (!plan[k]) plan[k] = r.v; });
+      var list = (s.opu || []).filter(function (r) { var p = plan[norm(r.l)]; return p && p.some(function (x) { return Math.round(x || 0); }); });
+      if (!list.length) h += '<div class="card muted">Плана доходов и расходов (лист «БДР») в таблице нет.</div>';
+      else h += '<div class="card"><h2>БДР: план и факт</h2><div class="muted" style="margin-bottom:6px">Факт — ОПУ по начислению, ₽</div><table>' +
+        '<tr class="tot"><td></td><td class="n">План</td><td class="n">Факт</td><td class="n">%</td></tr>' +
+        list.map(function (r) { var p = val(plan[norm(r.l)]), f = val(r.v);
+          return '<tr' + (r.leaf ? '' : ' class="tot"') + '><td' + (r.leaf ? ' class="ind"' : '') + '>' + esc(r.l) + '</td><td class="n">' + fmt(p) + '</td><td class="n">' + fmt(f) +
+            '</td><td class="n">' + (p ? pct(f, p) : '—') + '</td></tr>'; }).join('') + '</table></div>';
+    } else {
+      var bal = (s.bal || []).filter(function (r) { return Math.round(r.v[m + 1] || 0) || Math.round(r.v[m] || 0); });
+      h += '<div class="card"><h2>Баланс на конец ' + MONTHS_OF[m] + '</h2><table>' + (bal.length ? '<tr class="tot"><td></td><td class="n">' + cap(MONTHS[m]).slice(0, 3) +
+        '</td><td class="n">Изм.</td></tr>' + bal.map(function (r) {
+          var x = r.v[m + 1] || 0, d = x - (r.v[m] || 0);
+          return '<tr' + (r.art ? '' : ' class="tot"') + '><td' + (r.art ? ' class="ind"' : '') + '>' + esc(r.l) + '</td><td class="n">' + fmt(x) + '</td><td class="n muted">' + (Math.round(d) ? (d > 0 ? '+' : '') + fmt(d) : '') + '</td></tr>';
+        }).join('') : '<tr><td class="muted">Баланса в сводке нет</td></tr>') + '</table></div>';
+    }
+    return h;
+  }
+
+  function calendar(s) {
+    var c = s.cal || {};
+    if (!c.rows || !c.rows.length) return '<div class="card muted">Платёжного календаря нет' + (c.error ? ': ' + esc(c.error) : '') + '.</div>';
+    var e = calEnd(s), w = c.weeks || [];
+    var h = '';
+    if (c.warning) h += '<div class="warn">' + esc(c.warning) + '</div>';
+    h += '<div class="row2 grid"><div class="card"><div class="k">' + esc(c.cashLabel || 'Деньги на старте') + '</div><div class="v">' + rub(c.cash) + '</div></div>' +
+      '<div class="card"><div class="k">Порог остатка</div><div class="v">' + rub(c.minCash) + '</div>' +
+      (c.canTake ? '<div class="k">можно свободно потратить ' + rub(c.canTake) + '</div>' : '') + '</div></div>';
+    if (e) h += '<div class="card"><h2>Остаток по неделям</h2>' + line(w, e.v.map(function (x) { return x || 0; }), c.minCash) + '</div>';
+    if (e) h += '<div class="card"><h2>Остаток на конец недели</h2><table>' + w.map(function (x, i) {
+      var v = e.v[i] || 0;
+      return '<tr><td>' + esc(x) + '</td><td class="n ' + (v < 0 ? 'down' : '') + '">' + fmt(v) + (v < 0 ? ' 🔴' : v < (c.minCash || 0) ? ' 🟠' : '') + '</td></tr>'; }).join('') + '</table></div>';
+    var rows = c.rows.filter(function (r) { return r.v.some(function (x) { return Math.round(x); }); });
+    h += '<div class="card"><h2>Все строки календаря</h2><div class="scroll"><table><tr class="tot"><td></td>' +
+      w.map(function (x) { return '<td class="n">' + esc(String(x).slice(0, 5)) + '</td>'; }).join('') + '</tr>' +
+      rows.map(function (r) { return '<tr' + (r.item ? '' : ' class="tot"') + '><td' + (r.item ? ' class="ind"' : '') + '>' + esc(r.l) + '</td>' +
+        r.v.map(function (x) { return '<td class="n">' + (Math.round(x) ? fmt(x) : '') + '</td>'; }).join('') + '</tr>'; }).join('') + '</table></div></div>';
+    return h;
+  }
+
+  function companies(s) {
+    var L = s.last, m = st.m, list = s.companies || [];
+    if (!list.length) return '<div class="card muted">В этой таблице одна компания — её цифры на вкладке «Главное».</div>';
+    var h = monthPicker(L);
+    h += list.map(function (c) {
+      return '<div class="card"><div style="font-weight:700;font-size:17px;margin-bottom:6px">' + esc(c.name) + '</div><table>' +
+        '<tr><td>Выручка, ' + MONTHS[m] + '</td><td class="n">' + fmt(c.rev[m]) + '</td></tr>' +
+        '<tr><td>Прибыль, ' + MONTHS[m] + '</td><td class="n ' + (c.net[m] < 0 ? 'down' : '') + '">' + fmt(c.net[m]) + '</td></tr>' +
+        '<tr><td>Выручка с начала года</td><td class="n">' + fmt(sum(c.rev, m)) + '</td></tr>' +
+        '<tr><td>Прибыль с начала года</td><td class="n ' + (sum(c.net, m) < 0 ? 'down' : '') + '">' + fmt(sum(c.net, m)) + ' <span class="muted">(' + pct(sum(c.net, m), sum(c.rev, m)) + ')</span></td></tr>' +
+        '<tr class="tot"><td>Деньги на конец ' + MONTHS_OF[m] + '</td><td class="n">' + fmt(c.end[m]) + '</td></tr></table></div>';
+    }).join('');
+    var lab = list.map(function (c) { return c.name.replace(/^(ООО|АО|ИП|ПАО)\s*/i, '').replace(/[«»"]/g, '').slice(0, 10); });
+    h += '<div class="card"><h2>Прибыль с начала года</h2>' + bars(lab, [{ name: 'Прибыль', c: 'var(--c1)', v: list.map(function (c) { return sum(c.net, m); }) }]) + '</div>';
+    return h;
+  }
+
+  nav.onclick = function (e) {
+    var b = e.target.closest('button');
+    if (!b || !st.res) return;
+    st.tab = b.getAttribute('data-tab');
+    render();
+    window.scrollTo(0, 0);
+  };
+
+  function refresh() {
+    if (st.mode === 'tg') return load('phone.tg', { init: st.init });
+    return load('phone.data', { t: st.t, dev: st.dev });
+  }
+
+  // ---------- запуск ----------
+  function start() {
+    var hash = location.hash.slice(1);
+    // Telegram: мини-приложение (данные входа — в адресе после #tgWebAppData=…, подпись проверяет сервер)
+    var tg = /(?:^|&)tgWebAppData=([^&]*)/.exec(hash);
+    var tw = window.Telegram && window.Telegram.WebApp;
+    if ((tw && tw.initData) || tg) {
+      st.mode = 'tg';
+      st.init = tw && tw.initData ? tw.initData : decodeURIComponent(tg[1]);
+      if (tw) {
+        try { tw.ready(); tw.expand(); theme(tw.colorScheme === 'dark'); tw.onEvent && tw.onEvent('themeChanged', function () { theme(tw.colorScheme === 'dark'); }); } catch (e) { /* */ }
+      }
+      return load('phone.tg', { init: st.init });
+    }
+    // Ссылка из таблицы: #t=<секрет>. Сразу убираем её из адресной строки и запоминаем на этом телефоне.
+    var m = /(?:^|&)t=([0-9a-f]{40})/.exec(hash);
+    if (m) {
+      try { if (localStorage.getItem(LS_T) !== m[1]) localStorage.removeItem(LS_D); localStorage.setItem(LS_T, m[1]); } catch (e) { /* */ }
+      st.t = m[1];
+      try { history.replaceState(null, '', location.pathname); } catch (e) { /* */ }
+    } else {
+      try { st.t = localStorage.getItem(LS_T) || ''; } catch (e) { st.t = ''; }
+    }
+    if (!st.t) {
+      return message('Финдикатор на телефоне', 'Откройте эту страницу по ссылке из своей таблицы: Финансы → Telegram-бот → «Телефон: ссылка с ПИН-кодом». ' +
+        'Или нажмите кнопку «Финдикатор» в Telegram-боте Финдикатора.');
+    }
+    st.mode = 'link';
+    try { st.dev = localStorage.getItem(LS_D) || ''; } catch (e) { st.dev = ''; }
+    if (!st.dev) return pinScreen('');
+    return load('phone.data', { t: st.t, dev: st.dev });
+  }
+
+  // В Telegram сначала подгружаем его скрипт (оформление, развернуть на весь экран)
+  if (/tgWebAppData=/.test(location.hash)) {
+    var sc = document.createElement('script');
+    sc.src = 'https://telegram.org/js/telegram-web-app.js';
+    sc.onload = start; sc.onerror = start;
+    document.head.appendChild(sc);
+  } else start();
+})();
+</script>
+</body>
+</html>
