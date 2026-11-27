@@ -398,7 +398,7 @@ def build(layout_main_vars):
                 kurs_html = ('<div class="kurs-box"><div class="kurs-box-h">🎓 Курс новичка · статья %d из %d</div>'
                              '<label class="kurs-read"><input type="checkbox" data-url="%s"> Прочитано, всё понятно</label>%s</div>'
                              % (k + 1, len(kurs_refs), it['url'], nxt_html))
-            help_html = ('<div class="ask">Не нашли ответ? Напишите нам на <a href="mailto:on@r140.ru?subject=Вопрос по Финдикатору">почту</a> '
+            help_html = ('<div class="ask">Не нашли ответ? Напишите нам на <a href="mailto:findikator@yandex.ru?subject=Вопрос по Финдикатору">почту</a> '
                          'или позвоните: <a href="tel:+79615450553">+7 961 545-05-53</a> – ответим и допишем статью.</div>')
             body = ('<section class="hwrap hmain"><div class="acols"><aside class="aside"><div class="aside-h">%s %s</div>%s</aside>'
                     '<article class="art">%s<h1>%s</h1>%s%s<div class="art-body">%s</div>%s%s%s</article></div></section>'
