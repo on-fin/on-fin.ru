@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Правовая информация – Финдикатор</title>
-<meta name="description" content="Правовые документы сайта findikator.ru и системы Финдикатор: политика конфиденциальности, условия лицензии и реквизиты.">
+<meta name="description" content="Правовые документы сайта findikator.ru и системы Финдикатор: политика конфиденциальности, договор-оферта и реквизиты.">
 <link rel="stylesheet" href="/style.css?v=15">
 <link rel="icon" href="/favicon.ico?v=3" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://findikator.ru/poleznoe/pravovaya.html">
 <meta property="og:title" content="Правовая информация – Финдикатор">
-<meta property="og:description" content="Правовые документы сайта findikator.ru и системы Финдикатор: политика конфиденциальности, условия лицензии и реквизиты.">
+<meta property="og:description" content="Правовые документы сайта findikator.ru и системы Финдикатор: политика конфиденциальности, договор-оферта и реквизиты.">
 <meta property="og:image" content="https://findikator.ru/img/og.png?v=6">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -45,7 +45,7 @@
             <a href="/vozmozhnosti/kalendar.html">Платёжный календарь</a>
             <a href="/vozmozhnosti/byudzhet.html">Бюджет и план-факт</a>
             <div class="dd-title">ИИ</div>
-            <a href="/vozmozhnosti/ii.html">ИИ и чат-бот</a>
+            <a href="/vozmozhnosti/ii.html">ИИ-аналитик</a>
           </div>
           <div>
             <div class="dd-title">Автоматизация и контроль</div>
@@ -104,9 +104,9 @@
   <div class="wrap narrow">
     <div class="article-list">
       <a href="/privacy.html"><b>Политика конфиденциальности</b><span>Какие данные собирают сайт findikator.ru и система Финдикатор, где они хранятся и как используются.</span></a>
+      <a href="/poleznoe/usloviya.html"><b>Договор-оферта</b><span>Настройка системы «Финдикатор»: состав услуг, право пользования, поддержка и обновления, данные заказчика, реквизиты исполнителя.</span></a>
     </div>
-    <h2 class="mt">Условия лицензии и реквизиты</h2>
-    <p>Лицензионный договор и реквизиты продавца будут опубликованы на этой странице перед началом продаж. До этого условия лицензии, поддержки и обновлений описаны на странице <a href="/ceny.html">«Цены»</a>.</p>
+    <p class="mt">Сопровождение учёта и услуги финансового директора оформляются отдельным договором оказания услуг – пришлём его после бесплатного созвона.</p>
   </div>
 </section>
 
@@ -164,7 +164,7 @@
       <a href="/vozmozhnosti/odds.html">ОДДС</a>
       <a href="/vozmozhnosti/balans.html">Баланс</a>
       <a href="/vozmozhnosti/kalendar.html">Платёжный календарь</a>
-      <a href="/vozmozhnosti/ii.html">ИИ и чат-бот</a>
+      <a href="/vozmozhnosti/ii.html">ИИ-аналитик</a>
       <a href="/vozmozhnosti/">Все возможности</a>
     </div>
     <div class="foot-col">
@@ -246,7 +246,7 @@
     });
   });
   // Заявка на бесплатный созвон (с 27.11.2026): уходит в функцию Яндекс Облака (адрес — "zayavki" в /api.json),
-  // та присылает письмо на почту Финдикатора. Google и Telegram не участвуют — данные остаются в России.
+  // та присылает письмо на почту Финдикатора. Данные остаются в России.
   var tf = document.getElementById('trialForm'), t0 = Date.now();
   if (tf) tf.addEventListener('submit', function (e) {
     e.preventDefault();

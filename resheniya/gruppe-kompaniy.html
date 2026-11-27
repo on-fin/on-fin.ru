@@ -45,7 +45,7 @@
             <a href="/vozmozhnosti/kalendar.html">Платёжный календарь</a>
             <a href="/vozmozhnosti/byudzhet.html">Бюджет и план-факт</a>
             <div class="dd-title">ИИ</div>
-            <a href="/vozmozhnosti/ii.html">ИИ и чат-бот</a>
+            <a href="/vozmozhnosti/ii.html">ИИ-аналитик</a>
           </div>
           <div>
             <div class="dd-title">Автоматизация и контроль</div>
@@ -123,7 +123,7 @@
       <li>Платежи между компаниями группы распознаются и исключаются из сводного отчёта.</li>
       <li>Один переключатель – и все отчёты показывают группу целиком или одну компанию.</li>
       <li>Платёжный календарь – по деньгам всей группы.</li>
-      <li>Число компаний в лицензии не ограничено.</li>
+      <li>До 5 компаний – по обычной цене, для групп больше – стоимость по расчёту.</li>
     </ul>
     <p><a class="more" href="/vozmozhnosti/gruppa-kompaniy.html">Подробнее о работе с группой компаний →</a></p>
   </div>
@@ -201,7 +201,7 @@
       <a href="/vozmozhnosti/odds.html">ОДДС</a>
       <a href="/vozmozhnosti/balans.html">Баланс</a>
       <a href="/vozmozhnosti/kalendar.html">Платёжный календарь</a>
-      <a href="/vozmozhnosti/ii.html">ИИ и чат-бот</a>
+      <a href="/vozmozhnosti/ii.html">ИИ-аналитик</a>
       <a href="/vozmozhnosti/">Все возможности</a>
     </div>
     <div class="foot-col">
@@ -283,7 +283,7 @@
     });
   });
   // Заявка на бесплатный созвон (с 27.11.2026): уходит в функцию Яндекс Облака (адрес — "zayavki" в /api.json),
-  // та присылает письмо на почту Финдикатора. Google и Telegram не участвуют — данные остаются в России.
+  // та присылает письмо на почту Финдикатора. Данные остаются в России.
   var tf = document.getElementById('trialForm'), t0 = Date.now();
   if (tf) tf.addEventListener('submit', function (e) {
     e.preventDefault();
