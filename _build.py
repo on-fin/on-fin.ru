@@ -156,9 +156,13 @@ def main():
                 .replace('{{description}}', html.escape(meta.get('description', '')))
                 .replace('{{url}}', url)
                 .replace('{{cssv}}', CSS_VERSION))
+        # «robots: noindex» в заголовке страницы — не показывать её в поиске (страницы с ФИО Очира)
+        noindex = meta.get('robots', '') == 'noindex'
+        if noindex:
+            page = page.replace('<meta name="description"', '<meta name="robots" content="noindex, noarchive">\n<meta name="description"', 1)
         write(os.path.join(ROOT, rel), page)
-        # Черновики, которые не публикуются (перечислены в .gitignore), в карту сайта не попадают
-        if rel != '404.html' and rel not in drafts:
+        # Черновики, которые не публикуются (перечислены в .gitignore), и закрытые от поиска в карту сайта не попадают
+        if rel != '404.html' and rel not in drafts and not noindex:
             urls.append(url)
         print('  ' + rel)
 
@@ -169,7 +173,7 @@ def main():
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sitemap += ['  <url><loc>%s%s</loc></url>' % (SITE, u) for u in sorted(urls)]
-    sitemap += ['  <url><loc>%s/privacy.html</loc></url>' % SITE, '</urlset>', '']
+    sitemap += ['</urlset>', '']
     write(os.path.join(ROOT, 'sitemap.xml'), '\n'.join(sitemap))
     write(os.path.join(ROOT, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n' % SITE)
     print('Готово: %d страниц, sitemap.xml, robots.txt' % len(pages))
